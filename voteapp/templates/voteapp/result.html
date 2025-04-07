@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nairobi County Voting System - Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .header h1 {
+            color: #1a5276;
+            margin: 0;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-name {
+            margin-right: 20px;
+            font-weight: 500;
+        }
+        
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+        
+        .kenyan-flag {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .flag-black {
+            height: 10px;
+            flex: 1;
+            background-color: #000000;
+        }
+        
+        .flag-red {
+            height: 10px;
+            flex: 1;
+            background-color: #ff0000;
+        }
+        
+        .flag-green {
+            height: 10px;
+            flex: 1;
+            background-color: #009900;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #e1e1e1;
+            border: none;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: white;
+            border-bottom: 3px solid #1a5276;
+            font-weight: 600;
+        }
+        
+        .tab:hover:not(.active) {
+            background-color: #d1d1d1;
+        }
+        
+        .tab-content {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        .stats-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stats-card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .stats-card h3 {
+            margin-top: 0;
+            color: #1a5276;
+        }
+        
+        .stats-card p {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        
+        .results-container {
+            margin-top: 20px;
+        }
+        
+        .position-results {
+            margin-bottom: 30px;
+        }
+        
+        .position-results h3 {
+            color: #1a5276;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .candidates-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .candidates-table th,
+        .candidates-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .candidates-table th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+        
+        .candidates-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .votes-bar {
+            height: 20px;
+            background-color: #3498db;
+            border-radius: 10px;
+        }
+        
+        .add-candidate-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn-primary {
+            background-color: #1a5276;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #154360;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .alert {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .chart {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .chart h3 {
+            margin-top: 0;
+            color: #1a5276;
+            text-align: center;
+        }
+        
+        canvas {
+            width: 100%;
+            max-height: 250px;
+        }
+        
+        @media (max-width: 768px) {
+            .add-candidate-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-cards {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="kenyan-flag" aria-label="Kenyan Flag">
+        <div class="flag-black" aria-hidden="true"></div>
+        <div class="flag-red" aria-hidden="true"></div>
+        <div class="flag-green" aria-hidden="true"></div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Nairobi County Voting System - Admin Panel</h1>
+            <div class="user-info">
+                <span class="user-name" id="admin-name"></span>
+                <button class="logout-btn" id="logout-btn">Logout</button>
+            </div>
+        </div>
+        
+        <div class="tab-container">
+            <button class="tab active" data-tab="dashboard">Dashboard</button>
+            <button class="tab" data-tab="results">Election Results</button>
+            <button class="tab" data-tab="candidates">Manage Candidates</button>
+        </div>
+        
+        <div class="alert alert-success" id="success-alert" style="display: none;"></div>
+        <div class="alert alert-danger" id="error-alert" style="display: none;"></div>
+        
+        <!-- Dashboard Tab -->
+        <div class="tab-pane active" id="dashboard-tab">
+            <div class="stats-cards">
+                <div class="stats-card">
+                    <h3>Total Registered Voters</h3>
+                    <p id="total-voters">...</p>
+                </div>
+                <div class="stats-card">
+                    <h3>Total Votes Cast</h3>
+                    <p id="total-votes">...</p>
+                </div>
+                <div class="stats-card">
+                    <h3>Voter Turnout</h3>
+                    <p id="voter-turnout">...</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart">
+                    <h3>Voter Turnout</h3>
+                    <canvas id="turnout-chart"></canvas>
+                </div>
+                <div class="chart">
+                    <h3>Votes by Position</h3>
+                    <canvas id="position-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Tab -->
+        <div class="tab-pane" id="results-tab">
+            <div class="results-container" id="results-container">
+                <div class="loading">Loading election results...</div>
+            </div>
+        </div>
+        
+        <!-- Manage Candidates Tab -->
+        <div class="tab-pane" id="candidates-tab">
+            <div class="tab-content">
+                <h2>Add New Candidate</h2>
+                <form id="add-candidate-form" class="add-candidate-form">
+                    <div class="form-group">
+                        <label for="candidate-name">Candidate Name</label>
+                        <input type="text" id="candidate-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="candidate-party">Party</label>
+                        <input type="text" id="candidate-party" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="candidate-position">Position</label>
+                        <select id="candidate-position" class="form-control" required>
+                            <option value="">-- Select Position --</option>
+                            <!-- Positions will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="candidate-position-new">Or Add New Position</label>
+                        <input type="text" id="candidate-position-new" class="form-control">
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <button type="submit" class="btn btn-primary btn-block">Add Candidate</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="tab-content">
+                <h2>Current Candidates</h2>
+                <div id="candidates-list">
+                    <div class="loading">Loading candidates...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Chart.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" integrity="sha384-abc123" crossorigin="anonymous"></script>
+
+    <script>
+        // API URL
+        const API_URL = window.location.origin + '/api'; // Dynamically set API URL
+        
+        // DOM Elements
+        const adminNameElement = document.getElementById('admin-name');
+        const logoutBtn = document.getElementById('logout-btn');
+        const tabs = document.querySelectorAll('.tab');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const successAlert = document.getElementById('success-alert');
+        const errorAlert = document.getElementById('error-alert');
+        const totalVotersElement = document.getElementById('total-voters');
+        const totalVotesElement = document.getElementById('total-votes');
+        const voterTurnoutElement = document.getElementById('voter-turnout');
+        const resultsContainer = document.getElementById('results-container');
+        const candidateForm = document.getElementById('add-candidate-form');
+        const candidatePositionSelect = document.getElementById('candidate-position');
+        const candidatesList = document.getElementById('candidates-list');
+        
+        // Charts
+        let turnoutChart;
+        let positionChart;
+        
+        // Check authentication
+        checkAuth();
+        
+        // Initialize tabs
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding tab content
+                tabPanes.forEach(pane => pane.classList.remove('active'));
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Initialize the page
+        function initPage() {
+            fetchResults();
+            fetchCandidates();
+            
+            // Event listeners
+            logoutBtn.addEventListener('click', logout);
+            candidateForm.addEventListener('submit', addCandidate);
+            
+            // Initialize charts
+            initCharts();
+        }
+        
+        // Check if user is authenticated and is admin
+        function checkAuth() {
+            fetch(`${API_URL}/check_auth`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (!data.authenticated || !data.is_admin) {
+                    const redirectUrl = !data.authenticated ? 'signin.html' : 'voter.html';
+                    window.location.href = redirectUrl;
+                    return;
+                }
+                
+                adminNameElement.textContent = data.full_name;
+                initPage();
+            })
+            .catch(error => {
+                console.error('Error checking authentication:', error);
+                showError('Error checking authentication. Please try again later.');
+                window.location.href = 'error.html'; 
+                
+                // Redirect to an error page
+            });
+            fetch(`${API_URL}/admin/results`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                renderStats(data.stats);
+                renderResults(data.results);
+                updateCharts(data);
+            })
+            .catch(error => {
+                console.error('Error fetching results:', error);
+                showError('Error loading election results. Please try again.');
+            });
+        }
+        
+        // Fetch candidates
+        function fetchCandidates() {
+            fetch(`${API_URL}/candidates`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+            .then(data => {
+                populatePositionsDropdown(data.positions);
+                renderCandidatesList(data.candidates);
+            })
+            .catch(error => {
+                console.error('Error fetching candidates:', error);
+                showError('Error loading candidates. Please try again.');
+            });
+        }
+        
+        // Render statistics
+        function renderStats(stats) {
+            totalVotersElement.textContent = stats.total_users;
+            totalVotesElement.textContent = stats.total_voted;
+            voterTurnoutElement.textContent = `${stats.percentage}%`;
+        }
+        
+        // Render election results
+        function renderResults(results) {
+            resultsContainer.innerHTML = '';
+            
+            for (const position in results) {
+                const candidates = results[position];
+                
+                // Create position section
+                const positionSection = document.createElement('div');
+                positionSection.className = 'position-results';
+                
+                // Total votes for this position
+                const totalPositionVotes = candidates.reduce((sum, candidate) => sum + candidate.votes, 0);
+                
+                positionSection.innerHTML = `
+                    <h3>${position}</h3>
+                    <table class="candidates-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Party</th>
+                                <th>Votes</th>
+                                <th>Percentage</th>
+                                <th>Progress</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${candidates.map(candidate => {
+                                const percentage = totalPositionVotes > 0 
+                                    ? ((candidate.votes / totalPositionVotes) * 100).toFixed(1) 
+                                    : '0.0';
+                                
+                                return `
+                                    <tr>
+                                        <td>${candidate.name}</td>
+                                        <td>${candidate.party}</td>
+                                        <td>${candidate.votes}</td>
+                                        <td>${percentage}%</td>
+                                        <td>
+                                            <div class="votes-bar" style="width: ${percentage}%"></div>
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('')}
+                        </tbody>
+                    </table>
+                `;
+                
+                resultsContainer.appendChild(positionSection);
+            }
+            
+            // If no results
+            if (Object.keys(results).length === 0) {
+                resultsContainer.innerHTML = '<div class="alert alert-danger">No election results available yet.</div>';
+            }
+        }
+        
+        // Populate positions dropdown
+        function populatePositionsDropdown(positions) {
+            candidatePositionSelect.innerHTML = '<option value="">-- Select Position --</option>';
+            
+            positions.forEach(position => {
+                const option = document.createElement('option');
+                option.value = position;
+                option.textContent = position;
+                candidatePositionSelect.appendChild(option);
+            });
+        }
+        
+        // Render candidates list
+        function renderCandidatesList(candidates) {
+            // Group candidates by position
+            const candidatesByPosition = {};
+            
+            candidates.forEach(candidate => {
+                if (!candidatesByPosition[candidate.position]) {
+                    candidatesByPosition[candidate.position] = [];
+                }
+                candidatesByPosition[candidate.position].push(candidate);
+            });
+            
+            candidatesList.innerHTML = '';
+            
+            for (const position in candidatesByPosition) {
+                const positionCandidates = candidatesByPosition[position];
+                
+                const positionSection = document.createElement('div');
+                positionSection.className = 'position-results';
+                
+                positionSection.innerHTML = `
+                    <h3>${position}</h3>
+                    <table class="candidates-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Party</th>
+                                <th>Votes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${positionCandidates.map(candidate => `
+                                <tr>
+                                    <td>${candidate.name}</td>
+                                    <td>${candidate.party}</td>
+                                    <td>${candidate.votes}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+                
+                candidatesList.appendChild(positionSection);
+            }
+            
+            // If no candidates
+            if (Object.keys(candidatesByPosition).length === 0) {
+                candidatesList.innerHTML = '<div class="alert alert-danger">No candidates available.</div>';
+            }
+        }
+        
+        // Add new candidate
+        function addCandidate(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('candidate-name').value;
+            const party = document.getElementById('candidate-party').value;
+            let position = document.getElementById('candidate-position').value;
+            const newPosition = document.getElementById('candidate-position-new').value;
+            
+            // Use new position if provided
+            if (newPosition.trim()) {
+                position = newPosition.trim();
+            }
+            
+            if (!name || !party || !position) {
+                showError('Please fill all required fields.');
+                return;
+            }
+            
+            fetch(`${API_URL}/admin/add_candidate`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    name,
+                    party,
+                    position
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showSuccess('Candidate added successfully!');
+                    candidateForm.reset();
+                    
+                    // Refresh candidates list
+                    fetchCandidates();
+                } else {
+                    showError(data.message || 'Failed to add candidate.');
+                }
+            })
+            .catch(error => {
+                console.error('Error adding candidate:', error);
+                showError('An error occurred while adding the candidate. Please try again.');
+            });
+        }
+        
+        // Initialize charts
+        function initCharts() {
+            // Turnout chart
+            const turnoutCtx = document.getElementById('turnout-chart').getContext('2d');
+            turnoutChart = new Chart(turnoutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Voted', 'Not Voted'],
+                    datasets: [{
+                        data: [0, 100],
+                        backgroundColor: ['#28a745', '#e9ecef']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+            
+            // Position chart
+            const positionCtx = document.getElementById('position-chart').getContext('2d');
+            positionChart = new Chart(positionCtx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Total Votes',
+                        data: [],
+                        backgroundColor: '#3498db'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Update charts with data
+        function updateCharts(data) {
+            // Update turnout chart
+            const voted = data.stats.total_voted;
+            const notVoted = data.stats.total_users - voted;
+            
+            turnoutChart.data.datasets[0].data = [voted, notVoted];
+            turnoutChart.update();
+            
+            // Update position chart
+            const positions = Object.keys(data.results);
+            const votesByPosition = positions.map(position => {
+                return data.results[position].reduce((sum, candidate) => sum + candidate.votes, 0);
+            });
+            
+            positionChart.data.labels = positions;
+            positionChart.data.datasets[0].data = votesByPosition;
+            positionChart.update();
+        }
+        
+        // Show success message
+        function showSuccess(message) {
+            successAlert.textContent = message;
+            successAlert.style.display = 'block';
+            errorAlert.style.display = 'none';
+            
+            setTimeout(() => {
+                successAlert.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorAlert.textContent = message;
+            errorAlert.style.display = 'block';
+            successAlert.style.display = 'none';
+            
+            setTimeout(() => {
+                errorAlert.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Logout
+        function logout() {
+            fetch(`${API_URL}/logout`, {
+                method: 'POST',
+                credentials: 'include'
+            })
+            .then(() => {
+                window.location.href = 'index.html';
+            })
+            .catch(error => {
+                console.error('Error during logout:', error);
+                showError('An error occurred during logout. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>
