@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting System</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+        
+        <header>
+          
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container">
+                  
+                    <a class="navbar-brand font-weight-bold logo d-flex align-items-center" href="index.html">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/laptop.png" alt="Laptop Icon" 
+                             style="width: 30px; height: 30px; margin-right: 10px;">
+                        <img src="https://img.icons8.com/ios-filled/50/ffffff/checklist.png" alt="Checklist Icon" 
+                             style="width: 30px; height: 30px; margin-right: 10px;">
+                        <span class="text-uppercase"> E-Voting System</span>
+                        <span class="ai-badge">AI Secured</span>
+                    </a>
+                    
+                  
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" 
+                            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <!-- Navbar Items -->
+                    <div class="collapse navbar-collapse" id="navbarContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html">
+                                    <i class="fas fa-home mr-1"></i> Home 
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="candidates.html">
+                                    <i class="fas fa-user-tie mr-1"></i> Candidates
+                                </a>
+                            </li>
+                            <li class="nav-item ai-feature">
+                                <a class="nav-link" href="results.html">
+                                    <i class="fas fa-chart-bar mr-1"></i> Results
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">
+                                    <i class="fas fa-info-circle mr-1"></i> About
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light ml-2" href="login.html">
+                                    <i class="fas fa-sign-in-alt mr-1"></i> Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-light ml-2" href="register.html">
+                                    <i class="fas fa-user-plus mr-1"></i> Register
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+    
+        <!-- Main Content Section -->
+
+            
+        <!-- burner-->
+        <section class="hero-section py-5" style="background: linear-gradient(135deg, #007bff, #0056b3); color: white;">
+            <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                <h1 class="BannerH1 font-weight-bold">Welcome to Kenya's Online Voting System</h1>
+                <p class="lead">
+                    Experience secure, transparent, and accessible elections like never before. Our platform leverages cutting-edge technology, including AI and blockchain, to ensure every vote counts and every voice is heard. Join us in shaping a brighter, digitally empowered future for Kenya.
+                </p>
+                <ul class="list-unstyled mt-3">
+                    <li><i class="fas fa-check-circle mr-2"></i> Biometric and token-based authentication</li>
+                    <li><i class="fas fa-check-circle mr-2"></i> Real-time fraud detection and prevention</li>
+                    <li><i class="fas fa-check-circle mr-2"></i> Transparent and tamper-proof results</li>
+                </ul>
+                <div class="mt-4">
+                    <a href="register.html" class="btn btn-light btn-lg mr-2">
+                    <i class="fas fa-user-plus mr-2"></i>Register to Vote
+                    </a>
+                    <a href="about.html" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-info-circle mr-2"></i>Learn More
+                    </a>
+                </div>
+                </div>
+                <div class="col-md-6 text-center">
+                <img src="https://img.icons8.com/ios-filled/150/ffffff/ballot.png" alt="Voting Illustration" class="img-fluid">
+                <p class="mt-3">
+                    <strong>Next Election:</strong> August 9, 2025<br>
+                    <strong>Time:</strong> 6:00 AM - 6:00 PM
+                </p>
+                <div class="d-flex justify-content-start align-items-center h-100">
+                    <div class="col-md-6">
+                        <img src="img/vote (5).jpg" alt="bannerImage" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: auto;">
+                    </div>
+                </div>
+                <a href="candidates.html" class="btn btn-primary btn-lg">
+                    <i class="fas fa-user-tie mr-2"></i>Vote Now
+                </a>
+                </div>
+            </div>
+            </div>
+        </section>
+
+<!-- Voting Section -->
+
+<div class="pt-5 mx-auto">
+    <h1 class="text-center font-weight-bold mt-5" style="font-size: 2.5rem; color: #0056b3;">Online Voting System</h1>
+    <p class="text-center lead" style="font-size: 1.2rem; color: #333;">
+        Participate in a secure and transparent voting process. Your voice matters, and every vote counts! 
+        Join millions of Kenyans in shaping the future of our nation through a seamless and innovative voting experience.
+    </p>
+    <img src="img/vote (1).jpg" alt="Voting Illustration" class="img-fluid rounded shadow-lg" 
+         style="width: 100%; height: 450px; object-fit: cover; border: 5px solid #0056b3;">
+</div>
+
+<div class="text-center mt-5 mb-5">
+    <a href="register.html" class="btn btn-primary btn-lg mx-3 shadow-sm" 
+       style="transition: all 0.3s ease; font-size: 1.2rem; padding: 10px 20px; border-radius: 50px;">
+        <i class="fas fa-user-plus mr-2"></i>Register to Vote
+    </a>
+    <a href="candidates.html" class="btn btn-outline-primary btn-lg mx-3 shadow-sm" 
+       style="transition: all 0.3s ease; font-size: 1.2rem; padding: 10px 20px; border-radius: 50px;">
+        <i class="fas fa-user-tie mr-2"></i>View Candidates
+    </a>
+    <a href="results.html" class="btn btn-success btn-lg mx-3 shadow-sm" 
+       style="transition: all 0.3s ease; font-size: 1.2rem; padding: 10px 20px; border-radius: 50px;">
+        <i class="fas fa-chart-bar mr-2"></i>View Results
+    </a>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h3 style="color: #0056b3; font-weight: bold;">Why Choose Our Voting System?</h3>
+            <p style="font-size: 1.1rem; color: #555;">
+                Our platform is designed to provide a secure, transparent, and user-friendly voting experience. 
+                With advanced technologies like AI and blockchain, we ensure that every vote is counted accurately 
+                and securely. Your participation is the key to a brighter future for Kenya.
+            </p>
+            <ul class="list-unstyled" style="font-size: 1rem; color: #333;">
+                <li><i class="fas fa-check-circle text-success mr-2"></i> Easy and quick registration process</li>
+                <li><i class="fas fa-check-circle text-success mr-2"></i> Real-time fraud detection</li>
+                <li><i class="fas fa-check-circle text-success mr-2"></i> Transparent and tamper-proof results</li>
+                <li><i class="fas fa-check-circle text-success mr-2"></i> Accessible from anywhere</li>
+            </ul>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="img/vote (2).jpg" alt="Why Choose Us" class="img-fluid rounded shadow-lg" 
+                 style="width: 100%; height: auto; object-fit: cover; border: 5px solid #0056b3;">
+        </div>
+    </div>
+
+<!-- About Section -->
+<section id="about" class="py-5" style="background: linear-gradient(135deg, #007bff, #0056b3); color: white; border-radius: 15px; margin: 50px 0;">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Text Section -->
+            <div class="col-md-6">
+                <h1 class="text-white mb-4">
+                    <i class="fas fa-info-circle mr-2"></i>About Us
+                </h1>
+                <p class="lead">
+                    We are dedicated to revolutionizing the voting process in Kenya by providing a secure, transparent, and accessible platform for all citizens. Our system ensures that every vote is counted accurately and every voice is heard.
+                </p>
+                <ul class="list-unstyled mt-3">
+                    <li><i class="fas fa-check-circle text-light mr-2"></i> AI-powered fraud detection for real-time security</li>
+                    <li><i class="fas fa-check-circle text-light mr-2"></i> Blockchain technology for tamper-proof results</li>
+                    <li><i class="fas fa-check-circle text-light mr-2"></i> User-friendly interface accessible from any device</li>
+                    <li><i class="fas fa-check-circle text-light mr-2"></i> Biometric verification for voter authenticity</li>
+                    <li><i class="fas fa-check-circle text-light mr-2"></i> Real-time election updates and analytics</li>
+                </ul>
+                <div class="mt-4">
+                    <a href="about.html" class="btn btn-light btn-lg mr-2">
+                        <i class="fas fa-arrow-right mr-2"></i>Learn More
+                    </a>
+                    <a href="register.html" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-user-plus mr-2"></i>Register Now
+                    </a>
+                </div>
+            </div>
+            <!-- Image Section -->
+            <div class="col-md-6 text-center">
+                <img src="img/vote (3).jpg" alt="About Us" class="img-fluid rounded shadow-lg" style="width: 100%; max-height: 400px; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Transition Section -->
+<section class="py-4 text-center" style="background: #f8f9fa; color: #333;">
+    <div class="container">
+        <h2 class="mb-3">Empowering Democracy Through Technology</h2>
+        <p class="lead">Discover how our AI-powered features ensure a secure and seamless voting experience for all Kenyans.</p>
+        <a href="#ai-features" class="btn btn-primary btn-lg">
+            <i class="fas fa-robot mr-2"></i>Explore AI Features
+        </a>
+    </div>
+</section>
+
+<!-- AI Features Section -->
+<section id="ai-features" class="mb-5">
+    <div class="container">
+        <h2 class="text-center mb-4">
+            <i class="fas fa-robot mr-2"></i>AI-Powered Voting Features
+        </h2>
+        <div class="row">
+            <!-- AI Feature Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 ai-feature">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-fingerprint mr-2"></i>Biometric Verification
+                        </h5>
+                        <p class="card-description">
+                            Our advanced AI algorithms verify your identity using multiple biometric factors to ensure one person, one vote.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- AI Feature Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 ai-feature">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-shield-alt mr-2"></i>Fraud Detection
+                        </h5>
+                        <p class="card-description">
+                            Continuous monitoring using machine learning detects and prevents suspicious voting patterns in real-time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- AI Feature Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 ai-feature">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-chart-line mr-2"></i>Predictive Analytics
+                        </h5>
+                        <p class="card-description">
+                            Get insights into voting trends and turnout predictions using our advanced statistical models.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Interactive Feature -->
+        <div class="text-center mt-5">
+            <a href="#how-it-works" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-info-circle mr-2"></i>Learn How It Works
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section id="how-it-works" class="mb-5">
+    <div class="container">
+        <h3 class="text-center mb-4">How Our AI Secures Your Vote</h3>
+        <p class="text-center lead">
+            Our system uses a combination of cloud security layers, blockchain, and artificial intelligence to secure Kenyans' votes. Each ballot is cryptographically sealed and verified through a decentralized network, making it impossible to alter or tamper with results.
+        </p>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="chart-container">
+                    <h4 class="chart-title">Voting Security Layers</h4>
+                    <div class="text-center">
+                        <img src="img/images.jpeg" alt="Security Layers Chart placeholder" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Four-Step Voting Process</h5>
+                        <ol>
+                            <li class="mb-2">Register with your national ID and biometric data</li>
+                            <li class="mb-2">Receive your secure personalized voting token</li>
+                            <li class="mb-2">Cast your vote through our encrypted platform</li>
+                            <li class="mb-2">Verify your vote was counted correctly using your token</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Features Section -->
+<section class="py-5" style="background: #f8f9fa;">
+    <div class="container">
+        <h2 class="text-center mb-4">Interactive Features</h2>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <div class="p-4 bg-light rounded shadow-lg">
+                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="font-weight-bold">Secure Voting</h5>
+                    <p>Our platform uses advanced encryption and blockchain to ensure your vote is safe and secure.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4 bg-light rounded shadow-lg">
+                    <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
+                    <h5 class="font-weight-bold">Transparent Results</h5>
+                    <p>Real-time results tracking ensures transparency and builds trust in the voting process.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="p-4 bg-light rounded shadow-lg">
+                    <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                    <h5 class="font-weight-bold">Accessible Anywhere</h5>
+                    <p>Vote from the comfort of your home or on the go using any internet-enabled device.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <!-- CTA Section -->
+            <section class="text-center p-5 mb-5" style="background: linear-gradient(135deg, #f5f5f5, #e0e0e0); border-radius: 15px;">
+                <h2 class="mb-4">Ready to Make Your Voice Count?</h2>
+                <p class="lead mb-4">Register today to participate in the upcoming elections and help shape Kenya's future.</p>
+                <div class="d-flex justify-content-center">
+                    <a href="register.html" class="btn btn-primary mx-2">
+                        <i class="fas fa-user-plus mr-2"></i>Register Now
+                    </a>
+                    <a href="about.html" class="btn btn-outline-primary mx-2">
+                        <i class="fas fa-info-circle mr-2"></i>Learn More
+                    </a>
+                </div>
+            </section>
+        </main>
+    
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5>Kenya E-Voting System</h5>
+                        <p>Secure, transparent, and accessible elections for all Kenyans.</p>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white"><i class="fas fa-angle-right mr-2"></i>Help Center</a></li>
+                            <li><a href="#" class="text-white"><i class="fas fa-angle-right mr-2"></i>FAQs</a></li>
+                            <li><a href="#" class="text-white"><i class="fas fa-angle-right mr-2"></i>Privacy Policy</a></li>
+                            <li><a href="#" class="text-white"><i class="fas fa-angle-right mr-2"></i>Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contact Us</h5>
+                        <p><i class="fas fa-envelope mr-2"></i>info@kenyaevoting.go.ke</p>
+                        <p><i class="fas fa-phone mr-2"></i>+254 700 000 000</p>
+                        <div class="social-icons mt-3">
+                            <a href="#" class="text-white mr-3"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-white mr-3"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="bg-light my-4">
+                <div class="text-center">
+                    <p>&copy; 2025 Kenya E-Voting System. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    
+        <!-- Accessibility Tool -->
+        <div class="text-to-speech-button" title="Read page content aloud">
+            <i class="fas fa-volume-up"></i>
+        </div>
+    
+</header>
+
+
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
