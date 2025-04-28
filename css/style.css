@@ -22,17 +22,19 @@ body {
     background-color: #c5ffc0;
     position: relative;
     min-height: 100vh;
+
 }
 
 .navbar {
     background-image: linear-gradient(to right, var(--kenya-green), var(--kenya-gold), var(--kenya-black)); 
     border-bottom: 5px solid var(--kenya-red);
     display: flex;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    position: sticky;
+    width: 100%;
     top: 0;
     z-index: 1000;
 }
@@ -263,4 +265,31 @@ margin-left:auto ;
 #about{
     background-image: linear-gradient(to right, var(--kenya-green), var(--kenya-gold), var(--kenya-black));
     height: 100vh;
+}
+
+
+.chat-container {
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+}
+.message {
+    display: flex;
+    align-items: start;
+}
+.ai-message {
+    background: rgba(0, 123, 255, 0.1);
+}
+.avatar {
+    border-radius: 50%;
+}
+.quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.card {
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: translateY(-5px);
 }
