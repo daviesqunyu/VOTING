@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Access Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            border-color: #1a73e8;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #1a73e8;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: 2px solid #1a73e8;
+            border-color: transparent;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #1557b0;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+        }
+
+        .toggle-form span {
+            color: #1a73e8;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .admin-login {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .demo-credentials {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('voter')">Voter Portal</div>
+            <div class="tab" onclick="switchTab('admin')">Admin Portal</div>
+        </div>
+
+        <!-- Voter Section -->
+        <div id="voter-form" class="form-container active">
+            <div id="voter-login">
+                <h2>Voter Login</h2>
+                <div class="error-message" id="voter-error"></div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="voter-email" placeholder="Enter your registered email">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="voter-password" placeholder="Enter your password">
+                </div>
+                <button onclick="handleVoterLogin()">Sign In</button>
+                <div class="toggle-form">
+                    New voter? <span onclick="showRegistrationForm()">Register here</span>
+                </div>
+            </div>
+
+            <div id="voter-registration" style="display: none;">
+                <h2>Voter Registration</h2>
+                <div class="error-message" id="register-error"></div>
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="full-name" placeholder="Enter your full name">
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="register-email" placeholder="Enter your email">
+                </div>
+                <div class="input-group">
+                    <label>Create Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password">
+                </div>
+                <div class="input-group">
+                    <label>Voter ID</label>
+                    <input type="text" id="voter-id" placeholder="Enter your voter ID">
+                </div>
+                <button onclick="handleRegistration()">Register</button>
+                <div class="toggle-form">
+                    Already registered? <span onclick="showLoginForm()">Sign in here</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Section -->
+        <div id="admin-form" class="form-container">
+            <h2>Admin Login</h2>
+            <div class="error-message" id="admin-error"></div>
+            <div class="input-group">
+                <label>Admin ID</label>
+                <input type="text" id="admin-id" placeholder="Enter admin ID">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="admin-password" placeholder="Enter admin password">
+            </div>
+            <button onclick="handleAdminLogin()">Sign In</button>
+        </div>
+
+        <div class="demo-credentials">
+            <p><strong>Demo Voter:</strong> user@example.com / voter123</p>
+            <p><strong>Demo Admin:</strong> admin@example.com / admin123</p>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.form-container').forEach(f => f.classList.remove('active'));
+            
+            if(tab === 'voter') {
+                document.querySelector('.tab:nth-child(1)').classList.add('active');
+                document.getElementById('voter-form').classList.add('active');
+                showLoginForm();
+            } else {
+                document.querySelector('.tab:nth-child(2)').classList.add('active');
+                document.getElementById('admin-form').classList.add('active');
+            }
+        }
+
+        function showRegistrationForm() {
+            document.getElementById('voter-login').style.display = 'none';
+            document.getElementById('voter-registration').style.display = 'block';
+        }
+
+        function showLoginForm() {
+            document.getElementById('voter-registration').style.display = 'none';
+            document.getElementById('voter-login').style.display = 'block';
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function handleVoterLogin() {
+            const email = document.getElementById('voter-email').value;
+            const password = document.getElementById('voter-password').value;
+            const errorElement = document.getElementById('voter-error');
+
+            if(!validateEmail(email)) {
+                errorElement.textContent = 'Please enter a valid email address';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            if(password.length < 6) {
+                errorElement.textContent = 'Password must be at least 6 characters';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            // Simulate successful login
+            errorElement.style.display = 'none';
+            alert('Login successful! Redirecting to voter dashboard...');
+            // Add actual login logic here
+        }
+
+        function handleRegistration() {
+            const name = document.getElementById('full-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const voterId = document.getElementById('voter-id').value;
+            const errorElement = document.getElementById('register-error');
+
+            if(name.trim() === '') {
+                errorElement.textContent = 'Please enter your full name';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            if(!validateEmail(email)) {
+                errorElement.textContent = 'Please enter a valid email address';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            if(password.length < 8) {
+                errorElement.textContent = 'Password must be at least 8 characters';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            if(voterId.length < 5) {
+                errorElement.textContent = 'Please enter a valid Voter ID';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            // Simulate successful registration
+            errorElement.style.display = 'none';
+            alert('Registration successful! Please login with your credentials.');
+            showLoginForm();
+            // Add actual registration logic here
+        }
+
+        function handleAdminLogin() {
+            const adminId = document.getElementById('admin-id').value;
+            const password = document.getElementById('admin-password').value;
+            const errorElement = document.getElementById('admin-error');
+
+            if(adminId.trim() === '') {
+                errorElement.textContent = 'Please enter admin ID';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            if(password.length < 8) {
+                errorElement.textContent = 'Password must be at least 8 characters';
+                errorElement.style.display = 'block';
+                return;
+            }
+
+            // Simulate successful admin login
+            errorElement.style.display = 'none';
+            alert('Admin login successful! Redirecting to admin dashboard...');
+            // Add actual admin login logic here
+        }
+
+        // Demo credential autofill for testing
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', (e) => {
+                if(e.target.id === 'voter-email') e.target.value = 'user@example.com';
+                if(e.target.id === 'voter-password') e.target.value = 'voter123';
+                if(e.target.id === 'admin-id') e.target.value = 'admin@example.com';
+                if(e.target.id === 'admin-password') e.target.value = 'admin123';
+            });
+        });
+    </script>
+</body>
+</html>
