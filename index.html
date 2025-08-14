@@ -1,594 +1,748 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
+    <!--HOMEPAGE - E-VOTING SYSTEM-->
+    <!--This is the Main landing page for the voting system-->
+
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Voting System - Secure Online Digital Democracy</title>
+    
+    <!-- Bootstrap CSS THis holds most of the frontend details-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- My custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Custom page-specific styles -->
 
-    <title>Online Voting System</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <!-- Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100..900&display=swap" rel="stylesheet">
-
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
+    <style>
+        /* Hero section styling */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+            color: white;
+            padding: 4rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Feature cards */
+        .feature-card {
+            transition: all 0.3s ease;
+            border: none;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Statistics section */
+        .stats-section {
+            background: var(--bg-gray);
+            padding: 3rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+        
+        /* Call to action section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--secondary-green), #047857);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 0;
+                min-height: auto;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-        
-        <header>
-          
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-                <div class="container">
-                  
-                    <a class="navbar-brand font-weight-bold logo d-flex align-items-center" href="index.html">
-                        <img src="https://img.icons8.com/ios-filled/50/ffffff/laptop.png" alt="Laptop Icon" 
-                             style="width: 30px; height: 30px; margin-right: 10px;">
-                        <img src="https://img.icons8.com/ios-filled/50/ffffff/checklist.png" alt="Checklist Icon" 
-                             style="width: 30px; height: 30px; margin-right: 10px;">
-                        <span class="text-uppercase"> E-Voting System</span>
-                        <span class="ai-badge">AI Secured</span>
-                    </a>
-                    
-                  
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" 
-                            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <!-- Navbar Items -->
-                    <div class="collapse navbar-collapse" id="navbarContent">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.html">
-                                    <i class="fas fa-home mr-1"></i> Vote
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="login.html">
-                                    <i class="fas fa-user-tie mr-1"></i> Candidates
-                                </a>
-                            </li>
-                            <li class="nav-item ai-feature">
-                                <a class="nav-link" href="results.html">
-                                    <i class="fas fa-chart-bar mr-1"></i> Results
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">
-                                    <i class="fas fa-info-circle mr-1"></i> About
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-outline-light ml-2" href="login.html">
-                                    <i class="fas fa-sign-in-alt mr-1"></i> Login
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-light ml-2" href="register.html">
-                                    <i class="fas fa-user-plus mr-1"></i> Register
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-        </header>
-    
-        <!-- Main Content Section -->
-        <main>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <!-- Brand/Logo -->
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-vote-yea me-2"></i>
+                E-Voting System
+            </a>
             
-        <!-- burner-->
-        <section class="hero-section py-5" style="background: linear-gradient(135deg, #007bff, #0056b3); color: white;">
-            <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                <h1 class="BannerH1 font-weight-bold">Welcome to Kenya's Online Voting System</h1>
-                <p class="lead">
-                    Experience secure, transparent, and accessible elections like never before. Our platform leverages cutting-edge technology, including AI and blockchain, to ensure every vote counts and every voice is heard. Join us in shaping a brighter, digitally empowered future for Kenya.
-                </p>
-                <ul class="list-unstyled mt-3">
-                    <li><i class="fas fa-check-circle mr-2"></i> Biometric and token-based authentication</li>
-                    <li><i class="fas fa-check-circle mr-2"></i> Real-time fraud detection and prevention</li>
-                    <li><i class="fas fa-check-circle mr-2"></i> Transparent and tamper-proof results</li>
+            <!-- Mobile menu toggle -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <i class="fas fa-home me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">
+                            <i class="fas fa-star me-1"></i> Features
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">
+                            <i class="fas fa-cogs me-1"></i> How It Works
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#support">
+                            <i class="fas fa-headset me-1"></i> Support
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-outline-light" href="login.php">
+                            <i class="fas fa-sign-in-alt me-1"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-warning" href="register.php">
+                            <i class="fas fa-user-plus me-1"></i> Register
+                        </a>
+                    </li>
                 </ul>
-                <div class="mt-4">
-                    <a href="register.html" class="btn btn-light btn-lg mr-2">
-                    <i class="fas fa-user-plus mr-2"></i>Register to Vote
-                    </a>
-                    <a href="about.html" class="btn btn-outline-light btn-lg">
-                    <i class="fas fa-info-circle mr-2"></i>Learn More
-                    </a>
-                </div>
-                </div>
-                <div class="col-md-6 text-center">
-                <img src="https://img.icons8.com/ios-filled/150/ffffff/ballot.png" alt="Voting Illustration" class="img-fluid">
-                <p class="mt-3">
-                    <strong>Next Election:</strong> August 9, 2025<br>
-                    <strong>Time:</strong> 6:00 AM - 6:00 PM
+            </div>
+        </div>
+    </nav><section class="hero-section py-5" style="background: linear-gradient(135deg, #1e3a8a, #0f172a); min-height: 100vh;">
+  <div class="container">
+    <div class="row align-items-center min-vh-100">
+      
+      <!-- Left Text Content -->
+      <div class="col-lg-6 text-white">
+        <h1 class="display-4 fw-bold mb-3">Secure Digital Voting for Nairobi County</h1>
+        <p class="lead text-warning mb-4">KURA YAKO SIRI YAKO, VOTE AS A FAMILY FROM THE COMFORT OF YOUR HOME</p>
+
+        <!-- Features -->
+        <ul class="list-unstyled mb-4">
+          <li class="mb-3 d-flex align-items-center">
+            <i class="fas fa-shield-alt text-warning me-3"></i> Secure encryption and immutable technology
+          </li>
+          <li class="mb-3 d-flex align-items-center">
+            <i class="fas fa-eye text-warning me-3"></i> Real-time fraud detection and prevention
+          </li>
+          <li class="d-flex align-items-center">
+            <i class="fas fa-mobile-alt text-warning me-3"></i> Mobile-friendly and accessible design
+          </li>
+        </ul>
+
+        <!-- Action Buttons -->
+        <div class="d-flex flex-wrap gap-3">
+          <a href="register.php" class="btn btn-warning btn-lg rounded-pill">
+            <i class="fas fa-user-plus me-2"></i> Register to Vote
+          </a>
+          <a href="login.php" class="btn btn-outline-warning btn-lg rounded-pill">
+            <i class="fas fa-sign-in-alt me-2"></i> Login & Vote
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Visual -->
+      <div class="col-lg-6 text-center mt-5 mt-lg-0">
+        <div class="position-relative mx-auto" style="width: 280px; height: 280px;">
+          <div class="rounded-circle d-flex align-items-center justify-content-center shadow" 
+               style="width: 100%; height: 100%; background: linear-gradient(135deg, #fbbf24, #f59e0b);">
+            <i class="fas fa-vote-yea text-white" style="font-size: 3rem;"></i>
+          </div>
+
+          <!-- Floating Icons -->
+          <div class="position-absolute top-0 start-0 bg-success rounded-circle d-flex align-items-center justify-content-center shadow" 
+               style="width: 50px; height: 50px; transform: translate(-50%, 50%);">
+            <i class="fas fa-lock text-white"></i>
+          </div>
+          <div class="position-absolute top-0 end-0 bg-primary rounded-circle d-flex align-items-center justify-content-center shadow" 
+               style="width: 50px; height: 50px; transform: translate(50%, 100%);">
+            <i class="fas fa-mobile-alt text-white"></i>
+          </div>
+          <div class="position-absolute bottom-0 start-50 bg-danger rounded-circle d-flex align-items-center justify-content-center shadow" 
+               style="width: 50px; height: 50px; transform: translate(-50%, 50%);">
+            <i class="fas fa-chart-line text-white"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Why Choose Our E-Voting System?</h2>
+                <p class="lead text-muted">
+                    Built with modern technology to ensure security, transparency, and accessibility
                 </p>
-                <div class="d-flex justify-content-start align-items-center h-100">
-                    <div class="col-md-6">
-                        <img src="img/vote (5).jpg" alt="bannerImage" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: auto;">
-                    </div>
-                </div>
-                <a href="candidates.html" class="btn btn-primary btn-lg">
-                    <i class="fas fa-user-tie mr-2"></i>Vote Now
-                </a>
-                </div>
             </div>
-            </div>
-        </section>
-
-<!-- Voting Section -->
-
-<div class="pt-5 mx-auto">
-    <h1 class="text-center font-weight-bold mt-5" style="font-size: 2.5rem; color: #0056b3;">Online Voting System</h1>
-    <p class="text-center lead" style="font-size: 1.2rem; color: #333;">
-        Participate in a secure and transparent voting process. Your voice matters, and every vote counts! 
-        Join millions of Kenyans in shaping the future of our nation through a seamless and innovative voting experience.
-    </p>
-    <img src="img/vote (1).jpg" alt="Voting Illustration" class="img-fluid rounded shadow-lg" 
-         style="width: 100%; height: 450px; object-fit: cover; border: 5px solid #0056b3;">
-</div>
-
-<div class="text-center mt-5 mb-5">
-    <a href="register.html" class="btn btn-primary btn-lg mx-3 shadow-sm" 
-       style="transition: all 0.3s ease; font-size: 1.2rem; padding: 10px 20px; border-radius: 50px;">
-        <i class="fas fa-user-plus mr-2"></i>Register to Vote
-    </a>
-    <a href="candidates.html" class="btn btn-outline-primary btn-lg mx-3 shadow-sm" 
-       style="transition: all 0.3s ease; font-size: 1.2rem; padding: 10px 20px; border-radius: 50px;">
-        <i class="fas fa-user-tie mr-2"></i>View Candidates
-    </a>
-    <a href="results.html" class="btn btn-success btn-lg mx-3 shadow-sm" 
-       style="transition: all 0.3s ease; font-size: 1.2rem; padding: 10px 20px; border-radius: 50px;">
-        <i class="fas fa-chart-bar mr-2"></i>View Results
-    </a>
-</div>
-
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h3 style="color: #0056b3; font-weight: bold;">Why Choose Our Voting System?</h3>
-            <p style="font-size: 1.1rem; color: #555;">
-                Our platform is designed to provide a secure, transparent, and user-friendly voting experience. 
-                With advanced technologies like AI and blockchain, we ensure that every vote is counted accurately 
-                and securely. Your participation is the key to a brighter future for Kenya.
-            </p>
-            <ul class="list-unstyled" style="font-size: 1rem; color: #333;">
-                <li><i class="fas fa-check-circle text-success mr-2"></i> Easy and quick registration process</li>
-                <li><i class="fas fa-check-circle text-success mr-2"></i> Real-time fraud detection</li>
-                <li><i class="fas fa-check-circle text-success mr-2"></i> Transparent and tamper-proof results</li>
-                <li><i class="fas fa-check-circle text-success mr-2"></i> Accessible from anywhere</li>
-            </ul>
-        </div>
-        <div class="col-md-6 text-center">
-            <img src="img/vote (2).jpg" alt="Why Choose Us" class="img-fluid rounded shadow-lg" 
-                 style="width: 100%; height: auto; object-fit: cover; border: 5px solid #0056b3;">
-        </div>
-    <!-- About Section -->
-    <section id="about" class="py-5 mx-3" style="background: linear-gradient(135deg, #007bff, #0056b3); color: white; border-radius: 15px; margin: 50px 0;">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Text Section -->
-                <div class="col-lg-6 col-md-12 mb-4">
-                    <h1 class="text-white mb-4 display-4">
-                        <i class="fas fa-info-circle mr-2"></i>About Us
-                    </h1>
-                    <p class="lead">
-                        We are dedicated to revolutionizing the voting process in Kenya by providing a secure, transparent, and accessible platform for all citizens. Our system ensures that every vote is counted accurately and every voice is heard.
-                    </p>
-                    <ul class="list-unstyled mt-4">
-                        <li class="mb-2"><i class="fas fa-check-circle text-light mr-2"></i> AI-powered fraud detection for real-time security</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-light mr-2"></i> Blockchain technology for tamper-proof results</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-light mr-2"></i> User-friendly interface accessible from any device</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-light mr-2"></i> Biometric verification for voter authenticity</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-light mr-2"></i> Real-time election updates and analytics</li>
-                    </ul>
-                    <div class="mt-4">
-                        <a href="about.html" class="btn btn-light btn-lg mr-2 mb-2">
-                            <i class="fas fa-arrow-right mr-2"></i>Learn More
-                        </a>
-                        <a href="register.html" class="btn btn-outline-light btn-lg mb-2">
-                            <i class="fas fa-user-plus mr-2"></i>Register Now
-                        </a>
-                    </div>
-                </div>
-                <!-- Image Section -->
-                <div class="col-lg-6 col-md-12">
-                    <div class="image-container" style="min-height: 500px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                        <img src="img/vote (3).jpg" alt="About Us" 
-                             style="width: 100%; 
-                                    height: 100%; 
-                                    object-fit: cover; 
-                                    border-radius: 10px;
-                                    min-height: 450px;
-                                    max-height: 500px;">
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </section><!-- E-Voting Support & Contact Section -->
-    <section id="support-contact" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">E-Voting Support Center</h2>
             
             <div class="row g-4">
-                <!-- Left Side - Quick Help -->
-                <div class="col-lg-6">
-                    <div class="card shadow border-0 h-100">
-                        <div class="card-header bg-primary text-white py-3">
-                            <h4 class="mb-0"><i class="fas fa-question-circle me-2"></i>Common E-Voting Questions</h4>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="quick-links">
-                                <a href="#" class="d-flex align-items-center py-3 text-decoration-none text-dark border-bottom">
-                                    <i class="fas fa-laptop-code text-primary me-3 fs-5"></i>
-                                    <span class="flex-grow-1">How to access the e-voting platform</span>
-                                    <i class="fas fa-chevron-right"></i>
-                                </a>
-                                <a href="#" class="d-flex align-items-center py-3 text-decoration-none text-dark border-bottom">
-                                    <i class="fas fa-shield-alt text-primary me-3 fs-5"></i>
-                                    <span class="flex-grow-1">E-voting security measures</span>
-                                    <i class="fas fa-chevron-right"></i>
-                                </a>
-                                <a href="#" class="d-flex align-items-center py-3 text-decoration-none text-dark border-bottom">
-                                    <i class="fas fa-id-card text-primary me-3 fs-5"></i>
-                                    <span class="flex-grow-1">Verification requirements</span>
-                                    <i class="fas fa-chevron-right"></i>
-                                </a>
-                                <a href="#" class="d-flex align-items-center py-3 text-decoration-none text-dark">
-                                    <i class="fas fa-mobile-alt text-primary me-3 fs-5"></i>
-                                    <span class="flex-grow-1">Mobile voting app instructions</span>
-                                    <i class="fas fa-chevron-right"></i>
-                                </a>
+                <!-- Security Feature -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 text-center p-4">
+                        <div class="card-body">
+                            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-shield-alt fa-2x text-primary"></i>
                             </div>
-                            
-                            <div class="mt-4 pt-3 border-top text-center">
-                                <div class="row g-3">
-                                    <div class="col-sm-6">
-                                        <a href="#" class="btn btn-outline-primary w-100 py-3">
-                                            <i class="fas fa-file-pdf me-2"></i>Download User Guide
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <a href="#" class="btn btn-outline-primary w-100 py-3">
-                                            <i class="fas fa-play-circle me-2"></i>Video Tutorials
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <h5 class="card-title">Advanced Security</h5>
+                            <p class="card-text">
+                                Military-grade encryption and seure technology 
+                                protect your vote from tampering and ensure complete privacy.
+                            </p>
                         </div>
                     </div>
                 </div>
-    
-                <!-- Right Side - Contact Form -->
-                <div class="col-lg-6">
-                    <div class="card shadow border-0">
-                        <div class="card-header bg-primary text-white py-3">
-                            <h4 class="mb-0"><i class="fas fa-headset me-2"></i>E-Voting Technical Support</h4>
-                        </div>
-                        <div class="card-body p-4">
-                            <form class="needs-validation" novalidate>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="firstName" placeholder="First name" required>
-                                            <label for="firstName">First name</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control" id="lastName" placeholder="Last name" required>
-                                            <label for="lastName">Last name</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="email" placeholder="Email address" required>
-                                    <label for="email">Email address</label>
-                                </div>
-                                
-                                <div class="form-floating mb-3">
-                                    <select class="form-select" id="issueType" aria-label="Issue type">
-                                        <option selected disabled value="">Select your issue</option>
-                                        <option>Login Problems</option>
-                                        <option>Verification Failure</option>
-                                        <option>Ballot Submission Issues</option>
-                                        <option>Security Concerns</option>
-                                        <option>Other Technical Problems</option>
-                                    </select>
-                                    <label for="issueType">Issue type</label>
-                                </div>
-                                
-                                <div class="form-floating mb-4">
-                                    <textarea class="form-control" id="issueDescription" style="height: 150px" placeholder="Describe your issue"></textarea>
-                                    <label for="issueDescription">Describe your issue in detail</label>
-                                </div>
-                                
-                                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">
-                                    <i class="fas fa-paper-plane me-2"></i>Submit Support Request
-                                </button>
-                            </form>
-                            
-                            <div class="mt-4 pt-3 border-top">
-                                <div class="d-flex align-items-center justify-content-center flex-wrap">
-                                    <div class="text-center me-4 my-2">
-                                        <i class="fas fa-phone-alt text-primary fs-2 mb-2"></i>
-                                        <div><strong>24/7 Support Hotline</strong></div>
-                                        <div class="text-primary fw-bold">0800-123-VOTE</div>
-                                    </div>
-                                    <div class="text-center my-2">
-                                        <i class="fas fa-comments text-primary fs-2 mb-2"></i>
-                                        <div><strong>Live Chat Support</strong></div>
-                                        <a href="#" class="btn btn-sm btn-success">Start Chat</a>
-                                    </div>
-                                </div>
+                
+                <!-- Transparency Feature -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 text-center p-4">
+                        <div class="card-body">
+                            <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-eye fa-2x text-success"></i>
                             </div>
+                            <h5 class="card-title">Complete Transparency</h5>
+                            <p class="card-text">
+                                Real-time results tracking and public audit trails 
+                                ensure every vote is counted and verifiable.
+                            </p>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Accessibility Feature -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 text-center p-4">
+                        <div class="card-body">
+                            <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-universal-access fa-2x text-warning"></i>
+                            </div>
+                            <h5 class="card-title">Universal Accessibility</h5>
+                            <p class="card-text">
+                                Vote from anywhere using any device. Our platform 
+                                supports all users including those with disabilities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Speed Feature -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 text-center p-4">
+                        <div class="card-body">
+                            <div class="bg-info bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-bolt fa-2x text-info"></i>
+                            </div>
+                            <h5 class="card-title">Lightning Fast</h5>
+                            <p class="card-text">
+                                Quick registration, instant voting, and real-time results. 
+                                No more waiting in long lines or delayed results.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Support Feature -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 text-center p-4">
+                        <div class="card-body">
+                            <div class="bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-headset fa-2x text-danger"></i>
+                            </div>
+                            <h5 class="card-title">24/7 Support</h5>
+                            <p class="card-text">
+                                Round-the-clock technical support and assistance 
+                                to ensure everyone can participate in democracy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Verification Feature -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card feature-card h-100 text-center p-4">
+                        <div class="card-body">
+                            <div class="bg-secondary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-4" 
+                                 style="width: 80px; height: 80px;">
+                                <i class="fas fa-user-check fa-2x text-secondary"></i>
+                            </div>
+                            <h5 class="card-title">Identity Verification</h5>
+                            <p class="card-text">
+                                Multi-factor authentication and biometric verification 
+                                ensure only eligible voters can participate.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">How E-Voting Works</h2>
+                <p class="lead text-muted">
+                    Simple, secure, and straightforward process in just 4 steps
+                </p>
             </div>
             
-            <!-- Additional Support Options -->
-            <div class="row mt-4">
-                <div class="col-12">
-                    <div class="bg-white p-4 shadow border-0 rounded text-center">
-                        <h5 class="mb-3">Need in-person assistance?</h5>
-                        <a href="#" class="btn btn-outline-primary me-2 mb-2">
-                            <i class="fas fa-map-marker-alt me-2"></i>Find Support Centers
-                        </a>
-                        <a href="#" class="btn btn-outline-primary mb-2">
-                            <i class="fas fa-calendar-alt me-2"></i>Schedule Appointment
-                        </a>
+            <div class="row g-4">
+                <!-- Step 1 -->
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="position-relative mb-4">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                             style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">
+                            1
+                        </div>
                     </div>
+                    <h5>Register</h5>
+                    <p class="text-muted">
+                        Create your account with valid ID and personal information
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="position-relative mb-4">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                             style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">
+                            2
+                        </div>
+                    </div>
+                    <h5>Verify</h5>
+                    <p class="text-muted">
+                        Complete identity verification through secure authentication
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="position-relative mb-4">
+                        <div class="bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                             style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">
+                            3
+                        </div>
+                    </div>
+                    <h5>Vote</h5>
+                    <p class="text-muted">
+                        Cast your vote securely using our encrypted platform
+                    </p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="position-relative mb-4">
+                        <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center" 
+                             style="width: 80px; height: 80px; font-size: 2rem; font-weight: bold;">
+                            4
+                        </div>
+                    </div>
+                    <h5>Confirm</h5>
+                    <p class="text-muted">
+                        Receive instant confirmation and track your vote
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Transition & AI Features Section -->
-    <section class="py-5" style="background: linear-gradient(135deg, #f8f9fa, #e5e9f0); width: 100%;">
+
+    <!-- Support Section -->
+    <section id="support" class="py-5">
         <div class="container">
-            <!-- Main Transition Header -->
-            <div class="text-center mb-5">
-                <h2 class="display-4 font-weight-bold w-100" style="color: #0056b3;">
-                    <i class="fas fa-robot mr-2"></i>Empowering Democracy Through AI
-                </h2>
-                <p class="lead text-muted">Revolutionizing voting security and accessibility with cutting-edge technology</p>
-                <hr class="my-4 w-25 mx-auto" style="border-top: 3px solid #0056b3;">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-5 fw-bold mb-4">Need Help?</h2>
+                    <p class="lead mb-4">
+                        Our dedicated support team is here to assist you 24/7. 
+                        Whether you need help with registration, voting, or technical issues, 
+                        we're here to ensure your democratic participation.
+                    </p>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                     style="width: 50px; height: 50px;">
+                                    <i class="fas fa-phone text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Phone Support</h6>
+                                    <p class="text-muted mb-0">+254-759-075-916</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                     style="width: 50px; height: 50px;">
+                                    <i class="fas fa-envelope text-success"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Email Support</h6>
+                                    <p class="text-muted mb-0">support@evoting.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                     style="width: 50px; height: 50px;">
+                                    <i class="fas fa-comments text-warning"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Live Chat</h6>
+                                    <p class="text-muted mb-0">Available 24/7</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                     style="width: 50px; height: 50px;">
+                                    <i class="fas fa-book text-info"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">User Guide</h6>
+                                    <p class="text-muted mb-0">
+                                        <a href="user-guide.pdf" target="_blank" class="text-decoration-none">
+                                            Download PDF
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 text-center">
+
+                         style="width: 300px; height: 300px;">
+
+
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
     </section>
 
-            <!-- Main Content Area -->
-            <div class="row align-items-center mb-5">
-                <div class="col-lg-6 col-md-12 mb-4">
-                    <div class="p-4 bg-white rounded-lg shadow-lg">
-                        <h3 class="mb-4" style="color: #0056b3;">Smart Voting Solutions</h3>
-                        <p class="lead">Our AI-powered platform ensures:</p>
-                        <ul class="list-unstyled">
-                            <li class="mb-3">
-                                <i class="fas fa-check-circle text-success mr-2"></i>
-                                Enhanced security through multi-factor authentication
-                            </li>
-                            <li class="mb-3">
-                                <i class="fas fa-check-circle text-success mr-2"></i>
-                                Real-time fraud detection and prevention
-                            </li>
-                            <li class="mb-3">
-                                <i class="fas fa-check-circle text-success mr-2"></i>
-                                Transparent and immutable voting records
-                            </li>
-                        </ul>
-                        <a href="#ai-features" class="btn btn-primary btn-lg mt-3 rounded-pill">
-                            <i class="fas fa-arrow-right mr-2"></i>Explore AI Features
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </p>
+
+
+
+                        </a>
+
+
+                        </a>
+
+
+
+
+                            <i class="fab fa-instagram"></i>
                         </a>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="position-relative">
-                        <img src="img/vote (4).jpg" alt="AI Voting Technology" 
-                             class="img-fluid rounded-lg shadow-lg" 
-                             style="object-fit: cover; height: 400px; width: 100%;">
-                        <div class="position-absolute" 
-                             style="top: 10px; right: 10px; background: rgba(0,86,179,0.9); 
-                                    color: white; padding: 10px; border-radius: 50px;">
-                            <i class="fas fa-shield-alt"></i> AI Secured
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </small>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white-50">Home</a></li>
+                        <li><a href="register.php" class="text-white-50">Register</a></li>
+                        <li><a href="login.php" class="text-white-50">Login</a></li>
+                        <li><a href="#features" class="text-white-50">Features</a></li>
+                    </ul>
 
-            <!-- AI Features Cards -->
-            <div id="ai-features" class="row mt-5">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 border-0 shadow-lg hover-card">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-fingerprint fa-3x" style="color: #0056b3;"></i>
-                            </div>
-                            <h4 class="card-title">Biometric Verification</h4>
-                            <p class="card-text">Advanced facial recognition and fingerprint scanning ensure voter authenticity.</p>
-                        </div>
-                    </div>
-                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Help Center</a></li>
+                        <li><a href="#" class="text-white-50">Contact Us</a></li>
+                        <li><a href="user-guide.pdf" class="text-white-50">User Guide</a></li>
+                        <li><a href="#" class="text-white-50">FAQ</a></li>
+                    </ul>
 
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 border-0 shadow-lg hover-card">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-shield-alt fa-3x" style="color: #0056b3;"></i>
-                            </div>
-                            <h4 class="card-title">Real-time Protection</h4>
-                            <p class="card-text">24/7 monitoring with AI-powered threat detection and instant response system.</p>
-                        </div>
-                    </div>
-                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <h6>Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white-50">Terms of Service</a></li>
+                        <li><a href="#" class="text-white-50">Security</a></li>
+                        <li><a href="#" class="text-white-50">Compliance</a></li>
+                    </ul>
 
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 border-0 shadow-lg hover-card">
-                        <div class="card-body text-center p-4">
-                            <div class="feature-icon mb-3">
-                                <i class="fas fa-chart-line fa-3x" style="color: #0056b3;"></i>
-                            </div>
-                            <h4 class="card-title">Smart Analytics</h4>
-                            <p class="card-text">Data-driven insights and predictive analysis for transparent election monitoring.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
+                <div class="col-lg-2 col-md-6">
+                    <h6>Contact</h6>
+                    <p class="text-white-50 mb-1">
+                        <i class="fas fa-phone me-2"></i>
+                        +254-759-075-816
+                    </p>
+                    <p class="text-white-50 mb-1">
+                        <i class="fas fa-envelope me-2"></i>
+                        support@evoting.com
+                        through technology.
+                    <p class="text-white-50">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        Nairobi, Kenya
+                    </p>
+                </div>
+                        </a>
+            
+            <hr class="my-4 opacity-25">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0 text-white-50">
+                        &copy; <?php echo date('Y'); ?> E-Voting System. All rights reserved.
+                    </p>
 
-    <style>
-    .hover-card {
-        transition: transform 0.3s ease-in-out;
-        border-radius: 15px;
-    }
-    .hover-card:hover {
-        transform: translateY(-10px);
-    }
-    .feature-icon {
-        transition: transform 0.3s ease;
-    }
-    .hover-card:hover .feature-icon {
-        transform: scale(1.1);
-    }
-    </style>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0 text-white-50">
+                        Created by <strong>Davis Kunyu</strong> | Final Year Project
+                    </p>
+                    </ul>
+            </div>
+                    </ul>
+    </footer>
 
-<!-- How It Works Section -->
-<section id="how-it-works" class="mb-5">
-    <div class="container">
-        <h3 class="text-center mb-4">How Our AI Secures Your Vote</h3>
-        <p class="text-center lead">
-            Our system uses a combination of cloud security layers, blockchain, and artificial intelligence to secure Kenyans' votes. Each ballot is cryptographically sealed and verified through a decentralized network, making it impossible to alter or tamper with results.
-        </p>
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="chart-container">
-                    <h4 class="chart-title">Voting Security Layers</h4>
-                    <div class="text-center">
-                        <img src="img/images.jpeg" alt="Security Layers Chart placeholder" class="img-fluid rounded">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Four-Step Voting Process</h5>
-                        <ol>
-                            <li class="mb-2">Register with your national ID and biometric data</li>
-                            <li class="mb-2">Receive your secure personalized voting token</li>
-                            <li class="mb-2">Cast your vote through our encrypted platform</li>
-                            <li class="mb-2">Verify your vote was counted correctly using your token</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Interactive Features Section -->
-<section class="py-5" style="background: #f8f9fa;">
-    <div class="container">
-        <h2 class="text-center mb-4">Interactive Features</h2>
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <div class="p-4 bg-light rounded shadow-lg">
-                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
-                    <h5 class="font-weight-bold">Secure Voting</h5>
-                    <p>Our platform uses advanced encryption and blockchain to ensure your vote is safe and secure.</p>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="p-4 bg-light rounded shadow-lg">
-                    <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
-                    <h5 class="font-weight-bold">Transparent Results</h5>
-                    <p>Real-time results tracking ensures transparency and builds trust in the voting process.</p>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="p-4 bg-light rounded shadow-lg">
-                    <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
-                    <h5 class="font-weight-bold">Accessible Anywhere</h5>
-                    <p>Vote from the comfort of your home or on the go using any internet-enabled device.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-            <!-- CTA Section -->
-            <section class="text-center p-5 mb-5" style="background: linear-gradient(135deg, #f5f5f5, #e0e0e0); border-radius: 15px;">
-                <h2 class="mb-4">Ready to Make Your Voice Count?</h2>
-                <p class="lead mb-4">Register today to participate in the upcoming elections and help shape Kenya's future.</p>
-                <div class="d-flex justify-content-center">
-                    <a href="register.html" class="btn btn-primary mx-2">
-                        <i class="fas fa-user-plus mr-2"></i>Register Now
-                    </a>
-                    <a href="about.html" class="btn btn-outline-primary mx-2">
-                        <i class="fas fa-info-circle mr-2"></i>Learn More
-                    </a>
-                </div>
-            </section>
-    
-        <!-- Footer Section -->
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <h5>Kenya E-Voting System</h5>
-                        <p>Secure, transparent, and accessible elections for all Kenyans.</p>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <h5>Quick Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white"><i class="fas fa-angle-right mr-2"></i>Help Center</a></li>
-                            <li><a href="#" class="text-white"><i class="fas fa-angle-right mr-2"></i>FAQs</a></li>
-                            <li><a href="#" class="text-white"><i class="fas fa-angle-right mr-2"></i>Privacy Policy</a></li>
-                            <li><a href="#" class="text-white"><i class="fas fa-angle-right mr-2"></i>Terms of Service</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>Contact Us</h5>
-                        <p><i class="fas fa-envelope mr-2"></i>info@kenyaevoting.go.ke</p>
-                        <p><i class="fas fa-phone mr-2"></i>+254 700 000 000</p>
-                        <div class="social-icons mt-3">
-                            <a href="#" class="text-white mr-3"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-white mr-3"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-white mr-3"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <hr class="bg-light my-4">
-                <div class="text-center">
-                    <p>&copy; 2025 Kenya E-Voting System. All Rights Reserved.</p>
-                </div>
-            </div>
-        </footer>
-    
-        <!-- Accessibility Tool -->
-        <div class="text-to-speech-button" title="Read page content aloud">
+    <!-- Accessibility: Text-to-Speech Button -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050;">
+        <button type="button" class="btn btn-primary rounded-circle" id="ttsButton" title="Read page content">
             <i class="fas fa-volume-up"></i>
-        </div>
+        </button>
+                    </ul>
+    </div>
+                        Nairobi, Kenya
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-</header>
+    <!-- Our custom JavaScript -->
 
+    <script src="js/voting-system.js"></script>
+    
+    <!-- Page-specific JavaScript -->
+    <script>
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate statistics counters
+            animateCounters();
+            
+            // Initialize text-to-speech
+            initializeTextToSpeech();
+            
+            // Smooth scrolling for navigation links
+            initializeSmoothScrolling();
+        });
+        
+        /**
+         * Animate the statistics counters
+         */
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const increment = target / 100; // Animation speed
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                // Start animation when element comes into view
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(counter);
+            });
+        }
+        
+        /**
+         * Initialize text-to-speech functionality
+         */
+        function initializeTextToSpeech() {
+            const ttsButton = document.getElementById('ttsButton');
+            let isSpeaking = false;
+            
+            if (!window.speechSynthesis) {
+                ttsButton.style.display = 'none';
+                return;
+            }
+            
+            ttsButton.addEventListener('click', function() {
+                if (isSpeaking) {
+                    // Stop speaking
+                    window.speechSynthesis.cancel();
+                    isSpeaking = false;
+                    ttsButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    ttsButton.classList.remove('btn-danger');
+                    ttsButton.classList.add('btn-primary');
+                } else {
+                    // Start speaking
+                    const textContent = getPageContent();
+                    if (textContent) {
+                        const utterance = new SpeechSynthesisUtterance(textContent);
+                        utterance.rate = 0.8;
+                        utterance.pitch = 1;
+                        
+                        utterance.onend = function() {
+                            isSpeaking = false;
+                            ttsButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+                            ttsButton.classList.remove('btn-danger');
+                            ttsButton.classList.add('btn-primary');
+                        };
+                        
+                        window.speechSynthesis.speak(utterance);
+                        isSpeaking = true;
+                        ttsButton.innerHTML = '<i class="fas fa-stop"></i>';
+                        ttsButton.classList.remove('btn-primary');
+                        ttsButton.classList.add('btn-danger');
+                    }
+                }
+            });
+        }
+        
+        /**
+         * Get readable content from the page
+         */
+        function getPageContent() {
+            const selectors = ['h1', 'h2', 'h3', 'p', '.lead'];
+            let content = '';
+            
+            selectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(element => {
+                    if (element.offsetParent !== null) { // Element is visible
+                        content += element.textContent + '. ';
+                    }
+                });
+            });
+            
+            return content.trim();
+        }
+        
+        /**
+         * Initialize smooth scrolling for navigation links
+         */
+        function initializeSmoothScrolling() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+    </script>
 </body>
-
 </html>

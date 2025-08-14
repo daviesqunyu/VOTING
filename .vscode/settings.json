@@ -1,0 +1,8 @@
+/**
+ * VS Code settings for the Live Server extension.
+ * This configuration sets the port for the Live Server to 5501.
+ */
+
+{
+    "liveServer.settings.port": 5501
+}
