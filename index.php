@@ -30,6 +30,7 @@ if (!isLoggedIn()) {
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
+            
             <a class="navbar-brand d-flex align-items-center" href="index.php">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/laptop.png" alt="Logo" 
                      style="width: 30px; height: 30px; margin-right: 10px;">
@@ -107,6 +108,7 @@ if (!isLoggedIn()) {
 
     <!-- Main Content Section -->
     <main>
+
         <!-- Welcome Banner -->
         <section class="py-5" style="background: linear-gradient(135deg, #007bff, #0056b3); color: white;">
             <div class="container">
@@ -148,34 +150,68 @@ if (!isLoggedIn()) {
             </div>
         </section>
 
-        <!-- Voting Section -->
-        <div class="container py-5">
-            <h1 class="text-center font-weight-bold mb-4" style="color: #0056b3;">Online Voting System</h1>
-            <p class="text-center lead mb-5" style="color: #333;">
-                Participate in a secure and transparent voting process. Your voice matters, and every vote counts! 
-                Join millions of Kenyans in shaping the future of our nation.
-            </p>
 
-            <div class="text-center">
-                <a href="register.php" class="btn btn-primary btn-lg mx-2 mb-2">
-                    <i class="fas fa-user-plus mr-2"></i>Register to Vote
-                </a>
-                <a href="view_candidates.php" class="btn btn-outline-primary btn-lg mx-2 mb-2">
-                    <i class="fas fa-user-tie mr-2"></i>View Candidates
-                </a>
-                <a href="results.php" class="btn btn-success btn-lg mx-2 mb-2">
-                    <i class="fas fa-chart-bar mr-2"></i>View Results
-                </a>
+
+<footer class="bg-dark text-white pt-4 pb-3">
+    <div class="container">
+        <div class="row text-center text-md-start">
+
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="index.html" class="text-white-50">Home</a></li>
+                    <li><a href="register.php" class="text-white-50">Register</a></li>
+                    <li><a href="login.php" class="text-white-50">Login</a></li>
+                    <li><a href="#features" class="text-white-50">Features</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Support</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white-50">Help Center</a></li>
+                    <li><a href="#" class="text-white-50">Contact Us</a></li>
+                    <li><a href="user-guide.pdf" class="text-white-50">User Guide</a></li>
+                    <li><a href="#" class="text-white-50">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Contact</h6>
+                <p class="text-white-50 mb-1">
+                    <i class="fas fa-phone me-2"></i> +254 759 075 816
+                </p>
+                <p class="text-white-50 mb-1">
+                    <i class="fas fa-envelope me-2"></i> daviesqunyu@gmail.com
+                </p>
+                <p class="text-white-50">
+                    <i class="fas fa-map-marker-alt me-2"></i> Nairobi, Kenya
+                </p>
+            </div>
+
+        </div>
+
+        <hr class="border-secondary">
+
+        <!-- Footer Bottom -->
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <small class="text-white-50">
+                    &copy; <?php echo date('Y'); ?> E-Voting System. All rights reserved.
+                </small>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <small class="text-white-50">
+                    Created by <strong>Davis Kunyu</strong> | Final Year Project
+                </small>
             </div>
         </div>
-    </main>
+    </div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4">
-        <div class="container">
-            <p>&copy; 2025 E-Voting System. All rights reserved.</p>
-        </div>
-    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

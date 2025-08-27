@@ -11,7 +11,7 @@ if (!isLoggedIn() || !isAdmin()) {
 // Get quick statistics for dashboard
 function getDashboardStats() {
     global $db;
-    
+    //$stats array with default values. It then executes queries
     $stats = [
         'total_voters' => 0,
         'total_candidates' => 0,
@@ -22,25 +22,25 @@ function getDashboardStats() {
     ];
     
     try {
-        // Get registered voters
+        // Get or calculating the total number of registered voters
         $voter_result = mysqli_query($db, "SELECT COUNT(*) as total FROM users WHERE user_type = 'user'");
         if ($voter_result) {
             $stats['total_voters'] = mysqli_fetch_assoc($voter_result)['total'];
         }
         
-        // Get total candidates
+        // Get or calculating the total candidates
         $candidate_result = mysqli_query($db, "SELECT COUNT(*) as total FROM candidates WHERE status = 1");
         if ($candidate_result) {
             $stats['total_candidates'] = mysqli_fetch_assoc($candidate_result)['total'];
         }
-        
-        // Get total votes cast
-        $votes_result = mysqli_query($db, "SELECT COUNT(*) as total FROM votes");
+
+    // Get or calculating the total votes cast
+    $votes_result = mysqli_query($db, "SELECT COUNT(*) as total FROM votes");
         if ($votes_result) {
             $stats['total_votes'] = mysqli_fetch_assoc($votes_result)['total'];
         }
         
-        // Get users who have voted
+        // Get or calculating the  users who have voted
         $voted_users_result = mysqli_query($db, "SELECT COUNT(DISTINCT voter_id) as total FROM votes");
         if ($voted_users_result) {
             $stats['voted_users'] = mysqli_fetch_assoc($voted_users_result)['total'];
@@ -66,6 +66,7 @@ function getDashboardStats() {
 
 $dashboard_stats = getDashboardStats();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,8 +77,12 @@ $dashboard_stats = getDashboardStats();
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- External CSS and boot strap -->
+ 
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
   
   <style>
     .dashboard {
@@ -351,9 +356,47 @@ $dashboard_stats = getDashboardStats();
   </style>
 </head>
 <body>
+   <!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="admin_dashboard.php">
+                <i class="fas fa-vote-yea me-2"></i>E-Voting System
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_dashboard.php">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_candidates.php">
+                            <i class="fas fa-users me-1"></i>View Candidates
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="add_candidates.php">
+                            <i class="fas fa-user-plus me-1"></i>Add Candidate
+                        </a>
+                    </li>
+                    <li><span class="nav-link disabled d-none d-lg-inline">|</span></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="?logout=1">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
   <div class="dashboard">
     <header class="dash-header">
-      <h1><i class="fas fa-crown" style="color: gold;"></i> Admin Control Panel</h1>
+      <h1>
+        <i class="fas fa-crown" style="color: gold;"></i> Admin Control Panel</h1>
       <div class="user-info">
         <span>Welcome, <strong><?= htmlspecialchars($_SESSION['user']['username']) ?></strong></span>
         <a href="logout.php" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -361,7 +404,8 @@ $dashboard_stats = getDashboardStats();
     </header>
 
     <main class="dash-main">
-      <!-- Statistics Overview -->
+
+      <!-- Statistics Overview works with the database-->
       <div class="stats-overview">
         <div class="stat-card">
           <i class="fas fa-users" style="color: #007bff;"></i>
@@ -425,10 +469,10 @@ $dashboard_stats = getDashboardStats();
 
       <!-- Candidate Management -->
       <section class="card" onclick="toggle('cand-panel')">
-        <h2><i class="fas fa-user-tie" style="color: #007bff;"></i> Candidate Management</h2>
+        <h2><i class="fas fa-user-tie" style="color: #00ff26ff;"></i> Candidate Management</h2>
         <div id="cand-panel" class="panel">
           <a href="add_candidates.php" class="action-btn">
-            <i class="fas fa-user-plus" style="color: #28a745;"></i> Add Candidate
+            <i class="fas fa-user-plus" style="color: #001799ff;"></i> Add Candidate
           </a>
           <a href="remove_candidates.php" class="action-btn">
             <i class="fas fa-user-minus" style="color: #dc3545;"></i> Remove Candidate
@@ -441,7 +485,7 @@ $dashboard_stats = getDashboardStats();
 
       <!-- Voter Management -->
       <section class="card" onclick="toggle('voter-panel')">
-        <h2><i class="fas fa-users" style="color: #28a745;"></i> Voter Management</h2>
+        <h2><i class="fas fa-users" style="color: #110debff;"></i> Voter Management</h2>
         <div id="voter-panel" class="panel">
           <a href="add_voter.php" class="action-btn">
             <i class="fas fa-user-plus" style="color: #28a745;"></i> Add Voter
@@ -457,7 +501,7 @@ $dashboard_stats = getDashboardStats();
 
       <!-- System Management -->
       <section class="card" onclick="toggle('system-panel')">
-        <h2><i class="fas fa-cogs" style="color: #6f42c1;"></i> System Management</h2>
+        <h2><i class="fas fa-cogs" style="color: #dbff0dff;"></i> System Management</h2>
         <div id="system-panel" class="panel">
           <a href="index.php" class="action-btn">
             <i class="fas fa-home" style="color: #007bff;"></i> Go to Homepage
@@ -472,6 +516,68 @@ $dashboard_stats = getDashboardStats();
       </section>
     </main>
   </div>
+  
+ 
+<footer class="bg-dark text-white pt-4 pb-3">
+    <div class="container">
+        <div class="row text-center text-md-start">
+
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="index.html" class="text-white-50">Home</a></li>
+                    <li><a href="register.php" class="text-white-50">Register</a></li>
+                    <li><a href="login.php" class="text-white-50">Login</a></li>
+                    <li><a href="#features" class="text-white-50">Features</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Support</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white-50">Help Center</a></li>
+                    <li><a href="#" class="text-white-50">Contact Us</a></li>
+                    <li><a href="user-guide.pdf" class="text-white-50">User Guide</a></li>
+                    <li><a href="#" class="text-white-50">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Contact</h6>
+                <p class="text-white-50 mb-1">
+                    <i class="fas fa-phone me-2"></i> +254 759 075 816
+                </p>
+                <p class="text-white-50 mb-1">
+                    <i class="fas fa-envelope me-2"></i> daviesqunyu@gmail.com
+                </p>
+                <p class="text-white-50">
+                    <i class="fas fa-map-marker-alt me-2"></i> Nairobi, Kenya
+                </p>
+            </div>
+
+        </div>
+
+        <hr class="border-secondary">
+
+        <!-- Footer Bottom -->
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <small class="text-white-50">
+                    &copy; <?php echo date('Y'); ?> E-Voting System. All rights reserved.
+                </small>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <small class="text-white-50">
+                    Created by <strong>Davis Kunyu</strong> | Final Year Project
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+
 
   <script>
     function toggle(id) {

@@ -209,7 +209,7 @@ if ($show_results) {
                                             <div>
                                                 <h6 class="text-primary mb-1"><?php echo htmlspecialchars($vote['position_type']); ?></h6>
                                                 <strong><?php echo htmlspecialchars($vote['candidate_name']); ?></strong>
-                                                <p class="mb-0 text-muted"><?php echo htmlspecialchars($vote['party']); ?></p>
+                                                <p class="mb-0 text-muted"><?php echo htmlspecialchars($vote['parties'] ?? 'N/A'); ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -274,6 +274,23 @@ if ($show_results) {
             </div>
         </div>
     </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-vote-yea me-2"></i>E-Voting System</h5>
+                    <p class="mb-0">Secure and transparent voting platform for modern elections.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="mb-0">&copy; <?php echo date('Y'); ?> E-Voting System. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

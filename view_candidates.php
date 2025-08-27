@@ -237,20 +237,66 @@ if (isset($_GET['position_filter']) && $_GET['position_filter'] !== '') {
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5><i class="fas fa-vote-yea me-2"></i>E-Voting System</h5>
-                    <p class="mb-0">Secure and transparent voting platform for modern elections.</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <p class="mb-0">&copy; <?= date('Y') ?> E-Voting System. All rights reserved.</p>
-                </div>
+
+<footer class="bg-dark text-white pt-4 pb-3">
+    <div class="container">
+        <div class="row text-center text-md-start">
+
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="index.html" class="text-white-50">Home</a></li>
+                    <li><a href="register.php" class="text-white-50">Register</a></li>
+                    <li><a href="login.php" class="text-white-50">Login</a></li>
+                    <li><a href="#features" class="text-white-50">Features</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Support</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white-50">Help Center</a></li>
+                    <li><a href="#" class="text-white-50">Contact Us</a></li>
+                    <li><a href="user-guide.pdf" class="text-white-50">User Guide</a></li>
+                    <li><a href="#" class="text-white-50">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Contact</h6>
+                <p class="text-white-50 mb-1">
+                    <i class="fas fa-phone me-2"></i> +254 759 075 816
+                </p>
+                <p class="text-white-50 mb-1">
+                    <i class="fas fa-envelope me-2"></i> daviesqunyu@gmail.com
+                </p>
+                <p class="text-white-50">
+                    <i class="fas fa-map-marker-alt me-2"></i> Nairobi, Kenya
+                </p>
+            </div>
+
+        </div>
+
+        <hr class="border-secondary">
+
+        <!-- Footer Bottom -->
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <small class="text-white-50">
+                    &copy; <?php echo date('Y'); ?> E-Voting System. All rights reserved.
+                </small>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <small class="text-white-50">
+                    Created by <strong>Davis Kunyu</strong> | Final Year Project
+                </small>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>

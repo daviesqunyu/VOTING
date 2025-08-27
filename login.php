@@ -57,14 +57,14 @@ if (isLoggedIn()) {
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
+            color: #3807ffff;
             font-weight: 500;
         }
         
         .form-group input {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e1e5e9;
+            border: 2px solid #10f869ff;
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease;

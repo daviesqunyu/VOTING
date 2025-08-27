@@ -162,7 +162,7 @@ if (!function_exists('loginUser')) {
     }
 }
 
-// User logout function
+// User logout function logs out users and takes them to login page
 if (!function_exists('logoutUser')) {
     function logoutUser() {
         session_destroy();
@@ -171,10 +171,12 @@ if (!function_exists('logoutUser')) {
     }
 }
 
+
 // Get voting status
 if (!function_exists('getVotingStatus')) {
     function getVotingStatus() {
         return [
+     //I Have set default to active status which is (true)
             'is_active' => true,
             'message' => 'Voting is currently active'
         ];
@@ -222,16 +224,18 @@ if (!function_exists('hasVoterVoted')) {
     }
 }
 
-// Get voter's previous votes
+// Get voter's previous votes and 
+//records them with an output form in my_vote.php page
 if (!function_exists('getVoterVotes')) {
     function getVoterVotes($voter_id) {
         global $db;
         $voter_id = intval($voter_id);
         
-        $sql = "SELECT v.*, c.name as candidate_name, c.position_type 
+        $sql = "SELECT v.*, c.name as candidate_name, c.position_type, c.image_path, c.party 
                 FROM votes v 
                 JOIN candidates c ON v.candidate_id = c.id 
-                WHERE v.voter_id = $voter_id";
+                WHERE v.voter_id = $voter_id
+                ORDER BY c.position_type, c.name";
         $result = mysqli_query($db, $sql);
         $votes = [];
         if ($result) {
@@ -328,7 +332,7 @@ if (!function_exists('submitVotes')) {
             return false;
         }
 
-        // Use transaction for data integrity
+        // Uses transaction for data integrity
         try {
             mysqli_autocommit($db, false);
             
@@ -369,12 +373,15 @@ if (!function_exists('submitVotes')) {
     }
 }
 
-// Check if results can be shown
+// Check if results can be shown or hidden
+// CHANGING TRUE TO FALSE WILL TAGGLE RESULTS VIEW FOR VOTERS 
+//FOR ADMIN I USE THE HIDE RESUSLTS BUTTON IN ADMIN DASHBOURD
 if (!function_exists('canShowResults')) {
-    function canShowResults() {
-        return isset($_SESSION['results_visible']) ? $_SESSION['results_visible'] : true;
-    }
-}
+            function canShowResults() {
+                //(I HAVE SET VIEW RESULTS VIEW  DEFAULT TO TRUE)
+                return isset($_SESSION['results_visible']) ? $_SESSION['results_visible'] : true;
+            }
+        }
 
 // Get voting results
 if (!function_exists('getVotingResults')) {
@@ -489,6 +496,7 @@ function getAllCandidates() {
     }
     return $candidates;
 }
+
 
 // Delete candidate
 function deleteCandidate($id) {

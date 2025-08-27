@@ -347,6 +347,8 @@ if ($show_results) {
         </div>
     </div>
 
+
+
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -365,5 +367,68 @@ if ($show_results) {
             card.querySelector('input[type="radio"]').checked = true;
         }
     </script>
+
+        
+
+<footer class="bg-dark text-white pt-4 pb-3">
+    <div class="container">
+        <div class="row text-center text-md-start">
+
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="index.html" class="text-white-50">Home</a></li>
+                    <li><a href="register.php" class="text-white-50">Register</a></li>
+                    <li><a href="login.php" class="text-white-50">Login</a></li>
+                    <li><a href="#features" class="text-white-50">Features</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Support</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white-50">Help Center</a></li>
+                    <li><a href="#" class="text-white-50">Contact Us</a></li>
+                    <li><a href="user-guide.pdf" class="text-white-50">User Guide</a></li>
+                    <li><a href="#" class="text-white-50">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-4 mb-3">
+                <h6 class="text-uppercase fw-bold">Contact</h6>
+                <p class="text-white-50 mb-1">
+                    <i class="fas fa-phone me-2"></i> +254 759 075 816
+                </p>
+                <p class="text-white-50 mb-1">
+                    <i class="fas fa-envelope me-2"></i> daviesqunyu@gmail.com
+                </p>
+                <p class="text-white-50">
+                    <i class="fas fa-map-marker-alt me-2"></i> Nairobi, Kenya
+                </p>
+            </div>
+
+        </div>
+
+        <hr class="border-secondary">
+
+        <!-- Footer Bottom -->
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start">
+                <small class="text-white-50">
+                    &copy; <?php echo date('Y'); ?> E-Voting System. All rights reserved.
+                </small>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <small class="text-white-50">
+                    Created by <strong>Davis Kunyu</strong> | Final Year Project
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>

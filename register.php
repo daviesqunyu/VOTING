@@ -58,7 +58,7 @@ if (isLoggedIn()) {
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
+            color: #063ffcff;
             font-weight: 500;
         }
         
@@ -66,7 +66,7 @@ if (isLoggedIn()) {
         .form-group select {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e1e5e9;
+            border: 2px solid #27ff56ff;
             border-radius: 8px;
             font-size: 16px;
             transition: border-color 0.3s ease;
@@ -83,7 +83,7 @@ if (isLoggedIn()) {
             text-align: center;
             margin-bottom: 30px;
             padding: 20px;
-            background: #f8f9fa;
+            background: #ffffffff;
             border-radius: 10px;
         }
         
@@ -151,7 +151,7 @@ if (isLoggedIn()) {
                 <i class="fas fa-user-plus"></i>
             </div>
             <h2>Create Account</h2>
-            <p>Join the E-Voting System</p>
+            <p>Join our E-Voting System</p>
         </div>
 
         <form method="post" action="register.php">
@@ -162,7 +162,7 @@ if (isLoggedIn()) {
             <div class="user-type-section">
                 <p>Select your user type:</p>
                 <div class="form-group">
-                    <select id="user_type" name="user_type" required>
+                    <select id="user_type" name="user_type" required style="background-color: #89c0faff;">
                         <option value="" disabled selected>–– Choose User Type ––</option>
                         <option value="user">Voter</option>
                         <option value="admin">Admin</option>
@@ -223,7 +223,8 @@ if (isLoggedIn()) {
                 <i class="fas fa-user-plus"></i> Register
             </button>
         </form>
-
+        
+<!--login link-->
         <div class="links">
             <p>Already have an account? <a href="login.php">Sign in here</a></p>
         </div>
