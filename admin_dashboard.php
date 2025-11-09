@@ -65,6 +65,12 @@ function getDashboardStats() {
 }
 
 $dashboard_stats = getDashboardStats();
+
+// Get blockchain statistics
+require_once 'blockchain.php';
+$blockchain_stats = getBlockchainStatistics();
+$blockchain_validation = verifyBlockchainIntegrity();
+$recent_blocks = getBlockchain()->getRecentBlocks(5);
 ?>
 
 <!DOCTYPE html>
@@ -465,6 +471,91 @@ $dashboard_stats = getDashboardStats();
             <i class="fas fa-download"></i> Export Results
           </a>
         </div>
+      </div>
+
+      <!-- Blockchain Monitoring & Security -->
+      <div class="results-preview" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white;">
+        <h3 style="color: white;">
+          <i class="fas fa-link" style="color: #00ff88;"></i> Blockchain Security & Monitoring
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+          <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+            <h4 style="color: #00ff88; margin: 0 0 10px 0;">
+              <i class="fas fa-cubes"></i> <?php echo number_format($blockchain_stats['total_blocks']); ?>
+            </h4>
+            <p style="margin: 0; opacity: 0.9;">Total Blocks</p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+            <h4 style="color: #00ff88; margin: 0 0 10px 0;">
+              <i class="fas fa-vote-yea"></i> <?php echo number_format($blockchain_stats['vote_blocks']); ?>
+            </h4>
+            <p style="margin: 0; opacity: 0.9;">Vote Transactions</p>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+            <h4 style="color: <?php echo $blockchain_validation['is_valid'] ? '#00ff88' : '#ff4444'; ?>; margin: 0 0 10px 0;">
+              <i class="fas fa-<?php echo $blockchain_validation['is_valid'] ? 'shield-alt' : 'exclamation-triangle'; ?>"></i> 
+              <?php echo $blockchain_validation['is_valid'] ? 'Valid' : 'Invalid'; ?>
+            </h4>
+            <p style="margin: 0; opacity: 0.9;">Chain Integrity</p>
+            <?php if (!$blockchain_validation['is_valid']): ?>
+              <small style="color: #ffcccc; display: block; margin-top: 5px;">
+                <?php echo count($blockchain_validation['issues']); ?> issue(s) detected
+              </small>
+            <?php endif; ?>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 10px; backdrop-filter: blur(10px);">
+            <h4 style="color: #00ff88; margin: 0 0 10px 0;">
+              <i class="fas fa-lock"></i> Difficulty <?php echo $blockchain_stats['difficulty']; ?>
+            </h4>
+            <p style="margin: 0; opacity: 0.9;">Mining Difficulty</p>
+          </div>
+        </div>
+        
+        <!-- Latest Block Info -->
+        <div style="margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 8px;">
+          <h5 style="color: white; margin-bottom: 10px;">
+            <i class="fas fa-info-circle"></i> Latest Block Information
+          </h5>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; font-size: 0.9em;">
+            <div>
+              <strong>Block Index:</strong> #<?php echo $blockchain_stats['latest_block_index']; ?>
+            </div>
+            <div style="word-break: break-all;">
+              <strong>Block Hash:</strong> <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;">
+                <?php echo substr($blockchain_stats['latest_block_hash'], 0, 32); ?>...
+              </code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Blocks -->
+        <?php if (!empty($recent_blocks)): ?>
+        <div style="margin-top: 20px;">
+          <h5 style="color: white; margin-bottom: 10px;">
+            <i class="fas fa-history"></i> Recent Transactions
+          </h5>
+          <div style="max-height: 200px; overflow-y: auto;">
+            <?php foreach ($recent_blocks as $block): ?>
+              <?php if (isset($block['data']['type']) && $block['data']['type'] === 'vote'): ?>
+              <div style="background: rgba(255, 255, 255, 0.1); padding: 10px; margin-bottom: 8px; border-radius: 6px; font-size: 0.85em;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <i class="fas fa-vote-yea" style="color: #00ff88;"></i>
+                    <strong>Vote</strong> - Voter ID: <?php echo htmlspecialchars($block['data']['voter_id'] ?? 'N/A'); ?>
+                    | Candidate: <?php echo htmlspecialchars($block['data']['candidate_id'] ?? 'N/A'); ?>
+                  </div>
+                  <div>
+                    <small style="opacity: 0.8;">
+                      TX: <?php echo substr($block['transaction_id'], 0, 12); ?>...
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </div>
+        </div>
+        <?php endif; ?>
       </div>
 
       <!-- Candidate Management -->

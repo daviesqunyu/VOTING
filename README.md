@@ -20,6 +20,11 @@ A secure, modern, and user-friendly online voting system built with PHP, MySQL, 
 - Session-based authentication
 - Input validation and sanitization
 - Secure file upload handling
+- **🔗 Blockchain Integration** - Votes recorded on immutable blockchain
+- **Cryptographic Hashing** - SHA-256 algorithm for vote integrity
+- **Proof of Work** - Mining mechanism for block validation
+- **Transaction IDs** - Unique identifiers for each vote
+- **Chain Integrity Verification** - Continuous blockchain validation
 
 ### 📱 **Responsive Design**
 - Mobile-first approach
@@ -104,6 +109,7 @@ VOTING/
 │   └── voting-system.js          # JavaScript functionality
 ├── uploads/
 │   └── candidates/               # Candidate images
+├── blockchain.php                # 🔗 Blockchain core module
 ├── functions.php                 # Core functions and database
 ├── index.php                     # Main dashboard
 ├── login.php                     # User login
@@ -119,7 +125,8 @@ VOTING/
 ├── reset_password.php            # Password reset form
 ├── logout.php                    # Logout functionality
 ├── error_check.php               # System diagnostics
-└── README.md                     # This file
+├── README.md                     # This file
+└── BLOCKCHAIN_README.md          # 🔗 Blockchain documentation
 ```
 
 ## 👥 User Roles
@@ -172,7 +179,8 @@ VOTING/
 ### **Database Schema**
 - **users** - User accounts and authentication
 - **candidates** - Candidate information and images
-- **votes** - Vote records with constraints
+- **votes** - Vote records with constraints and blockchain transaction IDs
+- **blockchain** - Blockchain blocks and transactions (automatically created)
 
 ## 🛡️ Security Measures
 
@@ -192,6 +200,15 @@ VOTING/
 - No personal data exposure in errors
 - Secure session handling
 - Protected admin functions
+
+### **🔗 Blockchain Security**
+- **Immutable Vote Records** - Votes cannot be altered once recorded
+- **Cryptographic Hashing** - SHA-256 ensures data integrity
+- **Proof of Work** - Mining validates blocks and prevents tampering
+- **Transaction IDs** - Each vote has unique transaction identifier
+- **Chain Integrity** - Continuous verification of blockchain integrity
+- **Tamper Detection** - Any modification is immediately detected
+- **Transparent Audit Trail** - Complete transaction history for verification
 
 ## 📊 Features Overview
 
@@ -294,6 +311,31 @@ http://yoursite.com/error_check.php
 4. Verify database connectivity
 5. Test with different browsers
 
+## 🔗 Blockchain Integration
+
+This voting system includes **advanced blockchain integration** for enhanced security and transparency:
+
+- **Blockchain Module** (`blockchain.php`) - Core blockchain functionality
+- **Vote Recording** - All votes are recorded on immutable blockchain
+- **Transaction Tracking** - Each vote receives a unique transaction ID
+- **Integrity Verification** - Continuous blockchain validation
+- **Admin Monitoring** - Real-time blockchain statistics and monitoring
+- **Results Verification** - Blockchain verification displayed on results page
+
+### 📚 Blockchain Documentation
+
+For detailed information about the blockchain implementation, see:
+- **[BLOCKCHAIN_README.md](BLOCKCHAIN_README.md)** - Comprehensive blockchain documentation
+
+### Key Blockchain Features
+
+1. **Immutable Records** - Votes cannot be altered once recorded
+2. **SHA-256 Hashing** - Cryptographic security for all blocks
+3. **Proof of Work** - Mining mechanism for block validation
+4. **Chain Integrity** - Automatic validation of entire blockchain
+5. **Transaction IDs** - Unique identifiers for vote tracking
+6. **Monitoring Dashboard** - Real-time blockchain statistics
+
 ## 📄 License
 
 This project is open source and available under the MIT License.
@@ -304,6 +346,7 @@ This project is open source and available under the MIT License.
 - **Font Awesome** - Icon library
 - **PHP Community** - Documentation and support
 - **MySQL** - Database system
+- **Blockchain Technology** - For vote integrity and security
 
 ---
 
@@ -311,6 +354,7 @@ This project is open source and available under the MIT License.
 
 ✅ **Fully Functional** - All features working  
 ✅ **Security Enhanced** - Multiple security layers  
+✅ **🔗 Blockchain Integrated** - Votes secured on immutable blockchain  
 ✅ **Responsive Design** - Works on all devices  
 ✅ **Error-Free** - Comprehensive testing completed  
 ✅ **Production Ready** - Deploy with confidence  

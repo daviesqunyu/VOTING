@@ -324,6 +324,11 @@ $election_results = getElectionResults();
 $statistics = getElectionStatistics();
 $winners = getWinnersSummary();
 $voting_activity = getVotingActivity();
+
+// Get blockchain verification data
+require_once 'blockchain.php';
+$blockchain_stats = getBlockchainStatistics();
+$blockchain_validation = verifyBlockchainIntegrity();
 ?>
 
 <!DOCTYPE html>
@@ -767,6 +772,101 @@ $voting_activity = getVotingActivity();
                         <li><i class="fas fa-chart-line" style="color: #007bff;"></i> Total votes verified: <strong><?php echo number_format($statistics['total_votes']); ?></strong></li>
                         <li><i class="fas fa-users" style="color: #007bff;"></i> Voters who participated: <strong><?php echo number_format($statistics['voted_users']); ?></strong> out of <?php echo number_format($statistics['total_voters']); ?></li>
                     </ul>
+                </div>
+
+                <!-- Blockchain Verification Report -->
+                <div class="integrity-report" style="border-left-color: #17a2b8; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                    <h3 style="color: #17a2b8;">
+                        <i class="fas fa-link"></i> Blockchain Verification & Security
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+                        <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h5 style="color: #17a2b8; margin-bottom: 10px;">
+                                <i class="fas fa-cubes"></i> Blockchain Statistics
+                            </h5>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+                                    <strong>Total Blocks:</strong> <?php echo number_format($blockchain_stats['total_blocks']); ?>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+                                    <strong>Vote Transactions:</strong> <?php echo number_format($blockchain_stats['vote_blocks']); ?>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+                                    <strong>Latest Block Index:</strong> #<?php echo $blockchain_stats['latest_block_index']; ?>
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>Mining Difficulty:</strong> <?php echo $blockchain_stats['difficulty']; ?>
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h5 style="color: <?php echo $blockchain_validation['is_valid'] ? '#28a745' : '#dc3545'; ?>; margin-bottom: 10px;">
+                                <i class="fas fa-<?php echo $blockchain_validation['is_valid'] ? 'shield-check' : 'exclamation-triangle'; ?>"></i> 
+                                Chain Integrity Status
+                            </h5>
+                            <div style="padding: 10px; background: <?php echo $blockchain_validation['is_valid'] ? '#d4edda' : '#f8d7da'; ?>; border-radius: 5px; margin-bottom: 10px;">
+                                <strong style="color: <?php echo $blockchain_validation['is_valid'] ? '#155724' : '#721c24'; ?>;">
+                                    <?php echo $blockchain_validation['is_valid'] ? '✓ Chain Valid' : '✗ Chain Invalid'; ?>
+                                </strong>
+                            </div>
+                            <?php if ($blockchain_validation['is_valid']): ?>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: 5px 0; color: #28a745;">
+                                        <i class="fas fa-check-circle"></i> All blocks verified
+                                    </li>
+                                    <li style="padding: 5px 0; color: #28a745;">
+                                        <i class="fas fa-check-circle"></i> Hash integrity confirmed
+                                    </li>
+                                    <li style="padding: 5px 0; color: #28a745;">
+                                        <i class="fas fa-check-circle"></i> No tampering detected
+                                    </li>
+                                </ul>
+                            <?php else: ?>
+                                <div style="color: #dc3545;">
+                                    <strong>Issues Detected:</strong> <?php echo count($blockchain_validation['issues']); ?>
+                                    <?php if (!empty($blockchain_validation['issues'])): ?>
+                                        <ul style="margin-top: 10px; font-size: 0.9em;">
+                                            <?php foreach (array_slice($blockchain_validation['issues'], 0, 3) as $issue): ?>
+                                                <li><?php echo htmlspecialchars($issue); ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h5 style="color: #17a2b8; margin-bottom: 10px;">
+                                <i class="fas fa-lock"></i> Security Features
+                            </h5>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+                                    <i class="fas fa-check" style="color: #28a745;"></i> Immutable vote records
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+                                    <i class="fas fa-check" style="color: #28a745;"></i> Cryptographic hashing (SHA-256)
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid #e9ecef;">
+                                    <i class="fas fa-check" style="color: #28a745;"></i> Proof of Work validation
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <i class="fas fa-check" style="color: #28a745;"></i> Transparent transaction history
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <?php if (!empty($blockchain_stats['latest_block_hash'])): ?>
+                    <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h5 style="color: #17a2b8; margin-bottom: 10px;">
+                            <i class="fas fa-fingerprint"></i> Latest Block Hash
+                        </h5>
+                        <code style="display: block; padding: 10px; background: #f8f9fa; border-radius: 5px; word-break: break-all; font-size: 0.85em;">
+                            <?php echo htmlspecialchars($blockchain_stats['latest_block_hash']); ?>
+                        </code>
+                        <small style="color: #6c757d; margin-top: 5px; display: block;">
+                            This hash ensures the integrity of all votes recorded up to block #<?php echo $blockchain_stats['latest_block_index']; ?>
+                        </small>
+                    </div>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         <?php else: ?>

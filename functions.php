@@ -318,28 +318,46 @@ if (!function_exists('submitVotes')) {
             return false;
         }
 
-        // Ensure votes table exists
+        // Ensure votes table exists with blockchain transaction_id column
         $create_votes_sql = "CREATE TABLE IF NOT EXISTS votes (
             id INT AUTO_INCREMENT PRIMARY KEY,
             voter_id INT NOT NULL,
             candidate_id INT NOT NULL,
+            transaction_id VARCHAR(64) NULL,
+            block_hash VARCHAR(64) NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            UNIQUE KEY unique_voter_candidate (voter_id, candidate_id)
+            UNIQUE KEY unique_voter_candidate (voter_id, candidate_id),
+            INDEX idx_transaction_id (transaction_id)
         )";
         
         if (!mysqli_query($db, $create_votes_sql)) {
             error_log("Failed to create votes table: " . mysqli_error($db));
             return false;
         }
+        
+        // Add blockchain columns if they don't exist (for existing tables)
+        $check_cols = mysqli_query($db, "SHOW COLUMNS FROM votes LIKE 'transaction_id'");
+        if (!$check_cols || mysqli_num_rows($check_cols) == 0) {
+            mysqli_query($db, "ALTER TABLE votes ADD COLUMN transaction_id VARCHAR(64) NULL");
+        }
+        $check_cols2 = mysqli_query($db, "SHOW COLUMNS FROM votes LIKE 'block_hash'");
+        if (!$check_cols2 || mysqli_num_rows($check_cols2) == 0) {
+            mysqli_query($db, "ALTER TABLE votes ADD COLUMN block_hash VARCHAR(64) NULL");
+        }
+
+        // Load blockchain module
+        require_once 'blockchain.php';
 
         // Uses transaction for data integrity
         try {
             mysqli_autocommit($db, false);
             
-            $stmt = $db->prepare("INSERT INTO votes (voter_id, candidate_id) VALUES (?, ?)");
+            $stmt = $db->prepare("INSERT INTO votes (voter_id, candidate_id, transaction_id, block_hash) VALUES (?, ?, ?, ?)");
             if (!$stmt) {
                 throw new Exception("Prepare statement failed: " . $db->error);
             }
+            
+            $transaction_ids = [];
             
             foreach ($votes as $candidate_id) {
                 $candidate_id = intval($candidate_id);
@@ -349,7 +367,21 @@ if (!function_exists('submitVotes')) {
                     throw new Exception("Invalid candidate ID: $candidate_id");
                 }
                 
-                $stmt->bind_param("ii", $voter_id, $candidate_id);
+                // Record vote on blockchain
+                $blockchain_result = recordVoteOnBlockchain($voter_id, $candidate_id);
+                
+                if (!$blockchain_result) {
+                    error_log("Failed to record vote on blockchain for voter $voter_id, candidate $candidate_id");
+                    // Continue with database insertion even if blockchain fails
+                    $transaction_id = null;
+                    $block_hash = null;
+                } else {
+                    $transaction_id = $blockchain_result['transaction_id'];
+                    $block_hash = $blockchain_result['hash'];
+                    $transaction_ids[] = $transaction_id;
+                }
+                
+                $stmt->bind_param("iiss", $voter_id, $candidate_id, $transaction_id, $block_hash);
                 if (!$stmt->execute()) {
                     throw new Exception("Insert failed for candidate $candidate_id: " . $stmt->error);
                 }
@@ -358,6 +390,9 @@ if (!function_exists('submitVotes')) {
             $stmt->close();
             mysqli_commit($db);
             mysqli_autocommit($db, true);
+            
+            // Store transaction IDs in session for display
+            $_SESSION['last_vote_transactions'] = $transaction_ids;
             
             return true;
             

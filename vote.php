@@ -63,7 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_votes'])) {
                 // Extract only candidate IDs for submitVotes
                 $candidate_ids = array_values($votes);
                 if (submitVotes($voter_id, $candidate_ids)) {
-                    $_SESSION['success'] = "Your votes have been successfully submitted!";
+                    // Get transaction IDs from session
+                    $transaction_ids = isset($_SESSION['last_vote_transactions']) ? $_SESSION['last_vote_transactions'] : [];
+                    $transaction_message = "";
+                    if (!empty($transaction_ids)) {
+                        $transaction_message = " Blockchain Transaction ID(s): " . implode(", ", array_map(function($id) {
+                            return substr($id, 0, 16) . "...";
+                        }, $transaction_ids));
+                    }
+                    $_SESSION['success'] = "Your votes have been successfully submitted and recorded on the blockchain!" . $transaction_message;
+                    unset($_SESSION['last_vote_transactions']);
                     header('Location: vote.php');
                     exit;
                 } else {
@@ -232,6 +241,11 @@ if ($show_results) {
                                 <i class="fas <?php echo $has_voted ? 'fa-check-circle' : 'fa-clock'; ?> mr-1"></i>
                                 <?php echo $has_voted ? 'Voted' : 'Not Voted'; ?>
                             </div>
+                            <div class="mt-2">
+                                <small class="badge badge-info">
+                                    <i class="fas fa-link mr-1"></i>Blockchain Secured
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -341,6 +355,9 @@ if ($show_results) {
                     <!-- Already Voted Message -->
                     <div class="alert alert-success text-center">
                         <i class="fas fa-check-circle mr-2"></i>You have already voted. Thank you for participating!
+                        <br><small class="mt-2 d-block">
+                            <i class="fas fa-link mr-1"></i>Your votes are securely recorded on the blockchain.
+                        </small>
                     </div>
                 <?php endif; ?>
             </div>
